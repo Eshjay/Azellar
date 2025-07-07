@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { Suspense, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text, Box, Sphere, Line } from '@react-three/drei';
 import * as THREE from 'three';
@@ -8,7 +8,7 @@ const DatabaseNode = ({ position, color, label, size = 1 }) => {
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.5;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
     }
   });
 
@@ -19,7 +19,7 @@ const DatabaseNode = ({ position, color, label, size = 1 }) => {
       </Box>
       <Text
         position={[0, size + 0.5, 0]}
-        fontSize={0.3}
+        fontSize={0.25}
         color="#1e3a8a"
         anchorX="center"
         anchorY="middle"
@@ -40,18 +40,18 @@ const ConnectionLine = ({ start, end }) => {
     <Line
       points={points}
       color="#22d3ee"
-      lineWidth={2}
+      lineWidth={1}
     />
   );
 };
 
-const DataFlow = ({ start, end }) => {
+const DataFlow = ({ start, end, speed = 1 }) => {
   const sphereRef = useRef();
   const progress = useRef(0);
 
   useFrame((state) => {
-    progress.current = (Math.sin(state.clock.elapsedTime * 2) + 1) / 2;
     if (sphereRef.current) {
+      progress.current = (Math.sin(state.clock.elapsedTime * speed) + 1) / 2;
       const [sx, sy, sz] = start;
       const [ex, ey, ez] = end;
       sphereRef.current.position.x = sx + (ex - sx) * progress.current;
@@ -61,41 +61,41 @@ const DataFlow = ({ start, end }) => {
   });
 
   return (
-    <Sphere ref={sphereRef} args={[0.1]}>
-      <meshStandardMaterial color="#67e8f9" emissive="#67e8f9" emissiveIntensity={0.5} />
+    <Sphere ref={sphereRef} args={[0.08]}>
+      <meshStandardMaterial color="#67e8f9" emissive="#67e8f9" emissiveIntensity={0.3} />
     </Sphere>
   );
 };
 
 const DatabaseArchitecture = () => {
-  const nodes = [
-    { position: [0, 0, 0], color: "#1e3a8a", label: "Main DB", size: 1.5 },
-    { position: [-3, 1, 0], color: "#22d3ee", label: "Cache", size: 1 },
-    { position: [3, 1, 0], color: "#06b6d4", label: "Read Replica", size: 1 },
-    { position: [0, -2, 0], color: "#67e8f9", label: "Analytics DB", size: 1 },
-    { position: [-2, -1, 2], color: "#22d3ee", label: "Backup", size: 0.8 },
-    { position: [2, -1, 2], color: "#06b6d4", label: "Archive", size: 0.8 },
-  ];
+  const nodes = useMemo(() => [
+    { position: [0, 0, 0], color: "#1e3a8a", label: "Main DB", size: 1.2 },
+    { position: [-2.5, 1, 0], color: "#22d3ee", label: "Cache", size: 0.8 },
+    { position: [2.5, 1, 0], color: "#06b6d4", label: "Replica", size: 0.8 },
+    { position: [0, -1.5, 0], color: "#67e8f9", label: "Analytics", size: 0.8 },
+    { position: [-1.5, -1, 1.5], color: "#22d3ee", label: "Backup", size: 0.6 },
+    { position: [1.5, -1, 1.5], color: "#06b6d4", label: "Archive", size: 0.6 },
+  ], []);
 
-  const connections = [
-    { start: [0, 0, 0], end: [-3, 1, 0] },
-    { start: [0, 0, 0], end: [3, 1, 0] },
-    { start: [0, 0, 0], end: [0, -2, 0] },
-    { start: [0, 0, 0], end: [-2, -1, 2] },
-    { start: [0, 0, 0], end: [2, -1, 2] },
-  ];
+  const connections = useMemo(() => [
+    { start: [0, 0, 0], end: [-2.5, 1, 0] },
+    { start: [0, 0, 0], end: [2.5, 1, 0] },
+    { start: [0, 0, 0], end: [0, -1.5, 0] },
+    { start: [0, 0, 0], end: [-1.5, -1, 1.5] },
+    { start: [0, 0, 0], end: [1.5, -1, 1.5] },
+  ], []);
 
-  const dataFlows = [
-    { start: [0, 0, 0], end: [-3, 1, 0] },
-    { start: [0, 0, 0], end: [3, 1, 0] },
-    { start: [0, 0, 0], end: [0, -2, 0] },
-  ];
+  const dataFlows = useMemo(() => [
+    { start: [0, 0, 0], end: [-2.5, 1, 0], speed: 1.2 },
+    { start: [0, 0, 0], end: [2.5, 1, 0], speed: 0.8 },
+    { start: [0, 0, 0], end: [0, -1.5, 0], speed: 1.5 },
+  ], []);
 
   return (
     <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#22d3ee" />
+      <ambientLight intensity={0.4} />
+      <pointLight position={[5, 5, 5]} intensity={0.8} />
+      <pointLight position={[-5, -5, -5]} intensity={0.3} color="#22d3ee" />
       
       {nodes.map((node, index) => (
         <DatabaseNode
@@ -120,28 +120,46 @@ const DatabaseArchitecture = () => {
           key={index}
           start={flow.start}
           end={flow.end}
+          speed={flow.speed}
         />
       ))}
       
       <OrbitControls
-        enablePan={true}
+        enablePan={false}
         enableZoom={true}
         enableRotate={true}
         autoRotate={true}
-        autoRotateSpeed={0.5}
+        autoRotateSpeed={0.3}
+        maxDistance={12}
+        minDistance={6}
       />
     </>
   );
 };
 
+const LoadingFallback = () => (
+  <div className="w-full h-96 bg-gradient-to-br from-gray-900 to-azellar-navy rounded-2xl flex items-center justify-center">
+    <div className="text-white text-center">
+      <div className="animate-spin w-12 h-12 border-4 border-azellar-teal border-t-transparent rounded-full mx-auto mb-4"></div>
+      <p className="text-sm opacity-75">Loading 3D Visualization...</p>
+    </div>
+  </div>
+);
+
 const DatabaseVisualization = () => {
   return (
-    <div className="w-full h-96 bg-gradient-to-br from-gray-900 to-azellar-navy rounded-2xl overflow-hidden">
-      <Canvas camera={{ position: [8, 5, 8], fov: 60 }}>
-        <DatabaseArchitecture />
-      </Canvas>
+    <div className="w-full h-96 bg-gradient-to-br from-gray-900 to-azellar-navy rounded-2xl overflow-hidden relative">
+      <Suspense fallback={<LoadingFallback />}>
+        <Canvas 
+          camera={{ position: [6, 4, 6], fov: 50 }}
+          performance={{ min: 0.5 }}
+          dpr={[1, 2]}
+        >
+          <DatabaseArchitecture />
+        </Canvas>
+      </Suspense>
       
-      <div className="absolute bottom-4 left-4 text-white">
+      <div className="absolute bottom-4 left-4 text-white z-10">
         <p className="text-sm opacity-75">Interactive Database Architecture</p>
         <p className="text-xs opacity-50">Drag to rotate • Scroll to zoom</p>
       </div>
