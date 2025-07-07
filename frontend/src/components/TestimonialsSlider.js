@@ -135,7 +135,7 @@ const TestimonialsSlider = () => {
 
         <div className="relative">
           {/* Main Testimonial */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mx-auto max-w-4xl">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 mx-auto max-w-4xl transition-colors duration-300">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
