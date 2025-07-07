@@ -12,30 +12,40 @@ import ClientPortal from "./pages/ClientPortal";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LiveChat from "./components/LiveChat";
+import ThemeSettings from "./components/ThemeSettings";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/academy" element={<Academy />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/portal" element={<ClientPortal />} />
-        </Routes>
-        <Footer />
-        <LiveChat />
-        <Toaster position="top-right" />
-      </BrowserRouter>
-    </div>
+    <ThemeProvider>
+      <div className="App bg-white dark:bg-gray-900 transition-colors duration-300">
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/academy" element={<Academy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<Blog />} />
+            <Route path="/portal" element={<ClientPortal />} />
+          </Routes>
+          <Footer />
+          <LiveChat />
+          <ThemeSettings />
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              className: 'dark:bg-gray-800 dark:text-white',
+            }}
+          />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 
