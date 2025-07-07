@@ -137,16 +137,14 @@ const Contact = () => {
           </div>
 
           {/* Advanced Contact Form */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2"
-            >
-              <AdvancedContactForm />
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <AdvancedContactForm />
+          </motion.div>
 
             {/* Office Locations */}
             <motion.div
