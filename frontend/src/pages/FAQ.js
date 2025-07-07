@@ -135,7 +135,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden bg-gradient-to-r from-azellar-navy to-azellar-blue">
         <div className="absolute inset-0 hero-pattern opacity-10"></div>
@@ -158,7 +158,7 @@ const FAQ = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -166,10 +166,10 @@ const FAQ = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Get Your <span className="gradient-text">Answers</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Can't find what you're looking for? Contact our team for personalized assistance.
             </p>
           </motion.div>
@@ -181,13 +181,13 @@ const FAQ = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg"
+                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg"
               >
                 <div className="flex items-center space-x-4 mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-lg flex items-center justify-center">
                     <category.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">{category.title}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -198,13 +198,13 @@ const FAQ = () => {
                     return (
                       <div
                         key={faqIndex}
-                        className="border border-gray-200 rounded-lg overflow-hidden"
+                        className="border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden"
                       >
                         <button
                           onClick={() => toggleItem(globalIndex)}
-                          className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between"
+                          className="w-full px-6 py-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center justify-between"
                         >
-                          <span className="font-semibold text-gray-900 pr-4">
+                          <span className="font-semibold text-gray-900 dark:text-white pr-4">
                             {faq.question}
                           </span>
                           {isOpen ? (
@@ -220,9 +220,9 @@ const FAQ = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="px-6 py-4 bg-gray-50 border-t border-gray-200"
+                            className="px-6 py-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600"
                           >
-                            <p className="text-gray-700 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                               {faq.answer}
                             </p>
                           </motion.div>
@@ -238,18 +238,18 @@ const FAQ = () => {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-2xl p-12 shadow-lg"
+            className="bg-white dark:bg-gray-900 rounded-2xl p-12 shadow-lg"
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Still Have Questions?
             </h3>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Our team is here to help! Get in touch with us for personalized assistance and detailed answers to your specific questions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">

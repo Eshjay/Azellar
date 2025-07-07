@@ -176,7 +176,7 @@ const Academy = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
       <section 
         className="relative py-32 overflow-hidden"
@@ -206,7 +206,7 @@ const Academy = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -214,10 +214,10 @@ const Academy = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Why Choose <span className="gradient-text">Azellar Academy</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Our training programs are designed by industry experts to provide practical, real-world knowledge.
             </p>
           </motion.div>
@@ -234,8 +234,8 @@ const Academy = () => {
                 <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mx-auto mb-6">
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{benefit.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -243,7 +243,7 @@ const Academy = () => {
       </section>
 
       {/* Workshops */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -251,10 +251,10 @@ const Academy = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Available <span className="gradient-text">Workshops</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Choose from our comprehensive catalog of database and DevOps training programs.
             </p>
           </motion.div>
@@ -266,13 +266,13 @@ const Academy = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{workshop.title}</h3>
-                  <p className="text-gray-600 mb-4">{workshop.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{workshop.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{workshop.description}</p>
                   
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
                     <span className="flex items-center">
                       <Clock className="w-4 h-4 mr-1" />
                       {workshop.duration}
@@ -282,9 +282,9 @@ const Academy = () => {
                       {workshop.participants}
                     </span>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      workshop.level === 'Beginner' ? 'bg-green-100 text-green-800' :
-                      workshop.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                      workshop.level === 'Beginner' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+                      workshop.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+                      'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
                     }`}>
                       {workshop.level}
                     </span>
@@ -292,10 +292,10 @@ const Academy = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">Topics Covered:</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Topics Covered:</h4>
                   <ul className="space-y-2">
                     {workshop.topics.map((topic, topicIndex) => (
-                      <li key={topicIndex} className="flex items-center text-sm text-gray-600">
+                      <li key={topicIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                         <CheckCircle className="w-4 h-4 text-azellar-teal mr-2 flex-shrink-0" />
                         {topic}
                       </li>
@@ -304,10 +304,10 @@ const Academy = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">Learning Outcomes:</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Learning Outcomes:</h4>
                   <ul className="space-y-2">
                     {workshop.outcomes.map((outcome, outcomeIndex) => (
-                      <li key={outcomeIndex} className="flex items-center text-sm text-gray-600">
+                      <li key={outcomeIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                         <Award className="w-4 h-4 text-azellar-teal mr-2 flex-shrink-0" />
                         {outcome}
                       </li>
@@ -328,7 +328,7 @@ const Academy = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -336,10 +336,10 @@ const Academy = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               What Our <span className="gradient-text">Students Say</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Hear from professionals who have transformed their careers with our training programs.
             </p>
           </motion.div>
@@ -351,17 +351,17 @@ const Academy = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg"
+                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-6 italic">"{testimonial.content}"</p>
                 <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
+                  <div className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>
                 </div>
               </motion.div>
             ))}
