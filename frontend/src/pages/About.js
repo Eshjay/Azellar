@@ -97,7 +97,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <motion.div
@@ -106,15 +106,15 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-4xl font-bold text-gray-900">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
                 Our <span className="gradient-text">Mission</span>
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
                 To empower businesses with world-class database and DevOps solutions that drive innovation, 
                 ensure reliability, and enable sustainable growth. We believe that every organization deserves 
                 access to enterprise-grade database expertise, regardless of size or industry.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
                 Our mission is to bridge the gap between complex database technologies and business objectives, 
                 making advanced database solutions accessible and practical for organizations worldwide.
               </p>
@@ -126,14 +126,14 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-4xl font-bold text-gray-900">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
                 Our <span className="gradient-text">Vision</span>
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
                 To become the world's most trusted partner for database consulting and DevOps solutions, 
                 setting new standards for excellence in database architecture, performance, and security.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
                 We envision a future where businesses can focus on their core competencies while we handle 
                 the complexities of database management, ensuring their data infrastructure scales seamlessly 
                 with their growth.
