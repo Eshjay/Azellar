@@ -41,7 +41,7 @@ const Navigation = () => {
                 className={`relative font-medium transition-colors duration-200 hover:text-azellar-teal ${
                   location.pathname === item.path
                     ? 'text-azellar-teal'
-                    : 'text-gray-700'
+                    : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
                 {item.name}
@@ -55,8 +55,9 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <Link
               to="/contact"
               className="btn-primary"
