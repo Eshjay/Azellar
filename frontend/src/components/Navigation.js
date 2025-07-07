@@ -81,7 +81,7 @@ const Navigation = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white rounded-lg shadow-lg mt-2 border border-gray-200"
+            className="md:hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-2 border border-gray-200 dark:border-gray-700"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
@@ -91,13 +91,17 @@ const Navigation = () => {
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                     location.pathname === item.path
                       ? 'text-azellar-teal bg-azellar-teal/10'
-                      : 'text-gray-700 hover:text-azellar-teal hover:bg-gray-50'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-azellar-teal hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
+              <div className="flex items-center justify-between px-3 py-2">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Theme</span>
+                <ThemeToggle />
+              </div>
               <Link
                 to="/contact"
                 className="block px-3 py-2 mt-4 text-center btn-primary"
