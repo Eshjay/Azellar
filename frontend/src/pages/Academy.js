@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Users, Clock, Award, CheckCircle, Star } from 'lucide-react';
+import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
 
 const Academy = () => {
   const workshops = [
@@ -178,17 +179,8 @@ const Academy = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section 
-        className="relative py-32 overflow-hidden"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1606588984221-7ab3e2bb038a?w=1920&h=1080&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-azellar-navy/90 to-azellar-blue/80"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <OptimizedHeroSection imageUrl={heroImages.academy}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,7 +195,7 @@ const Academy = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </OptimizedHeroSection>
 
       {/* Benefits */}
       <section className="py-20 bg-white dark:bg-gray-900">

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Check, Star, Clock, Users, Shield, Zap, HeadphonesIcon } from 'lucide-react';
 import { useState } from 'react';
+import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
 
 const Support = () => {
   const [selectedPlan, setSelectedPlan] = useState('professional');
@@ -90,17 +91,8 @@ const Support = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section 
-        className="relative py-32 overflow-hidden"
-        style={{
-          backgroundImage: `url('https://images.pexels.com/photos/5475750/pexels-photo-5475750.jpeg?w=1920&h=1080&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-azellar-navy/90 to-azellar-blue/80"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <OptimizedHeroSection imageUrl={heroImages.support}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +107,7 @@ const Support = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </OptimizedHeroSection>
 
       {/* Support Plans */}
       <section className="py-20 bg-white dark:bg-gray-900">
