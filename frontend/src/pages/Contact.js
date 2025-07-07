@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
 import { useState } from 'react';
+import AdvancedContactForm from '../components/AdvancedContactForm';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
