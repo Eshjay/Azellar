@@ -198,14 +198,14 @@ const TestimonialsSlider = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-azellar-navy hover:text-azellar-teal z-10"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white dark:bg-gray-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-azellar-navy hover:text-azellar-teal z-10"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           
           <button
             onClick={nextTestimonial}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-azellar-navy hover:text-azellar-teal z-10"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white dark:bg-gray-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-azellar-navy hover:text-azellar-teal z-10"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
