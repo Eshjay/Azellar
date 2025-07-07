@@ -16,6 +16,8 @@ import ThemeSettings from "./components/ThemeSettings";
 import ScrollToTop from "./components/ScrollToTop";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Toaster } from 'react-hot-toast';
+import { preloadHeroImages } from "./utils/heroImages";
+import { useEffect } from 'react';
 
 function App() {
   return (
