@@ -249,8 +249,8 @@ const ServiceCalculator = () => {
               onClick={() => setFormData({ ...formData, [currentStepData.field]: option.id })}
               className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
                 formData[currentStepData.field] === option.id
-                  ? 'border-azellar-teal bg-azellar-teal/10 text-azellar-navy'
-                  : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-azellar-teal/50'
+                  ? 'border-azellar-teal bg-azellar-teal/10 text-azellar-navy dark:bg-azellar-teal/20 dark:text-azellar-cyan'
+                  : 'border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-azellar-teal/50'
               }`}
             >
               <div className="flex items-center justify-between">
