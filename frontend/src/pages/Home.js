@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 import { ChevronRight, Database, Shield, Zap, Users, Star, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TestimonialsSlider from '../components/TestimonialsSlider';
+import ServiceCalculator from '../components/ServiceCalculator';
+import DatabaseVisualization from '../components/DatabaseVisualization';
+import { CountingNumber, FloatingElements } from '../components/AdvancedAnimations';
 
 const Home = () => {
   const services = [
