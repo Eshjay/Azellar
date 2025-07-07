@@ -157,15 +157,15 @@ const AdvancedContactForm = () => {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             First Name *
           </label>
           <div className="relative">
             <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
             <input
               {...register('firstName')}
-              className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-                errors.firstName ? 'border-red-500' : 'border-gray-300'
+              className={`w-full pl-10 pr-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+                errors.firstName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="John"
             />
@@ -179,13 +179,13 @@ const AdvancedContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Last Name *
           </label>
           <input
             {...register('lastName')}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-              errors.lastName ? 'border-red-500' : 'border-gray-300'
+            className={`w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+              errors.lastName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="Doe"
           />
@@ -199,7 +199,7 @@ const AdvancedContactForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Email Address *
         </label>
         <div className="relative">
@@ -207,8 +207,8 @@ const AdvancedContactForm = () => {
           <input
             {...register('email')}
             type="email"
-            className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
+            className={`w-full pl-10 pr-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+              errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="john@company.com"
           />
@@ -223,7 +223,7 @@ const AdvancedContactForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Phone Number
           </label>
           <div className="relative">
@@ -231,8 +231,8 @@ const AdvancedContactForm = () => {
             <input
               {...register('phone')}
               type="tel"
-              className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-                errors.phone ? 'border-red-500' : 'border-gray-300'
+              className={`w-full pl-10 pr-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+                errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="+1 (555) 123-4567"
             />
@@ -246,13 +246,13 @@ const AdvancedContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Job Title *
           </label>
           <input
             {...register('jobTitle')}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-              errors.jobTitle ? 'border-red-500' : 'border-gray-300'
+            className={`w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+              errors.jobTitle ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="CTO, Lead Developer, etc."
           />
@@ -266,15 +266,15 @@ const AdvancedContactForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Company Name *
         </label>
         <div className="relative">
           <Building className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
           <input
             {...register('company')}
-            className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-              errors.company ? 'border-red-500' : 'border-gray-300'
+            className={`w-full pl-10 pr-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+              errors.company ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="Your Company Inc."
           />
@@ -297,7 +297,7 @@ const AdvancedContactForm = () => {
       className="space-y-6"
     >
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
           Project Type *
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -306,8 +306,8 @@ const AdvancedContactForm = () => {
               key={type.id}
               className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-all ${
                 watchedValues.projectType === type.id
-                  ? 'border-azellar-teal bg-azellar-teal/5'
-                  : 'border-gray-300 hover:border-azellar-teal/50'
+                  ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                  : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
               }`}
             >
               <input
@@ -317,7 +317,7 @@ const AdvancedContactForm = () => {
                 className="sr-only"
               />
               <type.icon className="w-5 h-5 text-azellar-teal mr-3" />
-              <span className="font-medium">{type.name}</span>
+              <span className="font-medium text-gray-900 dark:text-white">{type.name}</span>
               {watchedValues.projectType === type.id && (
                 <CheckCircle className="w-5 h-5 text-azellar-teal ml-auto" />
               )}
@@ -333,7 +333,7 @@ const AdvancedContactForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
           Budget Range *
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -342,8 +342,8 @@ const AdvancedContactForm = () => {
               key={budget.id}
               className={`relative flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-all ${
                 watchedValues.budget === budget.id
-                  ? 'border-azellar-teal bg-azellar-teal/5'
-                  : 'border-gray-300 hover:border-azellar-teal/50'
+                  ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                  : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
               }`}
             >
               <input
@@ -353,8 +353,8 @@ const AdvancedContactForm = () => {
                 className="sr-only"
               />
               <div>
-                <div className="font-medium">{budget.name}</div>
-                <div className="text-sm text-gray-500">{budget.description}</div>
+                <div className="font-medium text-gray-900 dark:text-white">{budget.name}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{budget.description}</div>
               </div>
               {watchedValues.budget === budget.id && (
                 <CheckCircle className="w-5 h-5 text-azellar-teal" />
@@ -372,7 +372,7 @@ const AdvancedContactForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-4">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
             Timeline *
           </label>
           <div className="space-y-2">
@@ -381,8 +381,8 @@ const AdvancedContactForm = () => {
                 key={timeline.id}
                 className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition-all ${
                   watchedValues.timeline === timeline.id
-                    ? 'border-azellar-teal bg-azellar-teal/5'
-                    : 'border-gray-300 hover:border-azellar-teal/50'
+                    ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                    : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
                 }`}
               >
                 <input
@@ -391,7 +391,7 @@ const AdvancedContactForm = () => {
                   value={timeline.id}
                   className="sr-only"
                 />
-                <span className={`font-medium ${timeline.urgent ? 'text-red-600' : ''}`}>
+                <span className={`font-medium ${timeline.urgent ? 'text-red-600' : 'text-gray-900 dark:text-white'}`}>
                   {timeline.name}
                 </span>
                 {watchedValues.timeline === timeline.id && (
@@ -409,7 +409,7 @@ const AdvancedContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-4">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
             Team Size *
           </label>
           <div className="space-y-2">
@@ -418,8 +418,8 @@ const AdvancedContactForm = () => {
                 key={size.id}
                 className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition-all ${
                   watchedValues.teamSize === size.id
-                    ? 'border-azellar-teal bg-azellar-teal/5'
-                    : 'border-gray-300 hover:border-azellar-teal/50'
+                    ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                    : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
                 }`}
               >
                 <input
@@ -428,7 +428,7 @@ const AdvancedContactForm = () => {
                   value={size.id}
                   className="sr-only"
                 />
-                <span className="font-medium">{size.name}</span>
+                <span className="font-medium text-gray-900 dark:text-white">{size.name}</span>
                 {watchedValues.teamSize === size.id && (
                   <CheckCircle className="w-5 h-5 text-azellar-teal ml-auto" />
                 )}
@@ -454,14 +454,14 @@ const AdvancedContactForm = () => {
       className="space-y-6"
     >
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Current Challenges *
         </label>
         <textarea
           {...register('currentChallenges')}
           rows={4}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-            errors.currentChallenges ? 'border-red-500' : 'border-gray-300'
+          className={`w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+            errors.currentChallenges ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
           }`}
           placeholder="Describe the main challenges you're facing with your current database setup..."
         />
@@ -474,14 +474,14 @@ const AdvancedContactForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Goals & Objectives *
         </label>
         <textarea
           {...register('goals')}
           rows={4}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
-            errors.goals ? 'border-red-500' : 'border-gray-300'
+          className={`w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-azellar-teal focus:border-transparent ${
+            errors.goals ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
           }`}
           placeholder="What do you hope to achieve with this project? What does success look like?"
         />
@@ -494,19 +494,19 @@ const AdvancedContactForm = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Additional Information
         </label>
         <textarea
           {...register('additionalInfo')}
           rows={3}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
           placeholder="Any additional details you'd like to share..."
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-4">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
           Preferred Contact Method *
         </label>
         <div className="space-y-2">
@@ -519,8 +519,8 @@ const AdvancedContactForm = () => {
               key={method.value}
               className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition-all ${
                 watchedValues.preferredContact === method.value
-                  ? 'border-azellar-teal bg-azellar-teal/5'
-                  : 'border-gray-300 hover:border-azellar-teal/50'
+                  ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                  : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
               }`}
             >
               <input
@@ -530,7 +530,7 @@ const AdvancedContactForm = () => {
                 className="sr-only"
               />
               <method.icon className="w-5 h-5 text-azellar-teal mr-3" />
-              <span className="font-medium">{method.label}</span>
+              <span className="font-medium text-gray-900 dark:text-white">{method.label}</span>
               {watchedValues.preferredContact === method.value && (
                 <CheckCircle className="w-5 h-5 text-azellar-teal ml-auto" />
               )}
@@ -548,7 +548,7 @@ const AdvancedContactForm = () => {
   );
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
       <Toaster position="top-right" />
       
       {/* Header */}
@@ -558,7 +558,7 @@ const AdvancedContactForm = () => {
       </div>
 
       {/* Progress Bar */}
-      <div className="px-8 py-6 bg-gray-50 border-b">
+      <div className="px-8 py-6 bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
         <div className="flex items-center justify-between mb-4">
           {steps.map((step, index) => (
             <div key={index} className="flex items-center">
@@ -567,7 +567,7 @@ const AdvancedContactForm = () => {
                   ? 'bg-azellar-teal border-azellar-teal text-white' 
                   : currentStep === index + 1
                   ? 'border-azellar-teal text-azellar-teal'
-                  : 'border-gray-300 text-gray-400'
+                  : 'border-gray-300 dark:border-gray-600 text-gray-400'
               }`}>
                 {currentStep > index + 1 ? (
                   <CheckCircle className="w-6 h-6" />
@@ -577,7 +577,7 @@ const AdvancedContactForm = () => {
               </div>
               {index < steps.length - 1 && (
                 <div className={`w-24 h-1 mx-4 ${
-                  currentStep > index + 1 ? 'bg-azellar-teal' : 'bg-gray-300'
+                  currentStep > index + 1 ? 'bg-azellar-teal' : 'bg-gray-300 dark:bg-gray-600'
                 }`} />
               )}
             </div>
@@ -585,8 +585,8 @@ const AdvancedContactForm = () => {
         </div>
         
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-900">{steps[currentStep - 1].title}</h3>
-          <p className="text-gray-600">{steps[currentStep - 1].description}</p>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{steps[currentStep - 1].title}</h3>
+          <p className="text-gray-600 dark:text-gray-300">{steps[currentStep - 1].description}</p>
         </div>
       </div>
 
@@ -599,12 +599,12 @@ const AdvancedContactForm = () => {
         </AnimatePresence>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-8 pt-6 border-t">
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
           <button
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className="flex items-center space-x-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center space-x-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Previous</span>

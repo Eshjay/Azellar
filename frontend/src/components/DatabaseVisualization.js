@@ -2,6 +2,7 @@ import { Suspense, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text, Box, Sphere, Line } from '@react-three/drei';
 import * as THREE from 'three';
+import { useTheme } from '../contexts/ThemeContext';
 
 const DatabaseNode = ({ position, color, label, size = 1 }) => {
   const meshRef = useRef();
@@ -137,8 +138,8 @@ const DatabaseArchitecture = () => {
   );
 };
 
-const LoadingFallback = () => (
-  <div className="w-full h-96 bg-gradient-to-br from-gray-900 to-azellar-navy rounded-2xl flex items-center justify-center">
+const LoadingFallback = ({ isDark }) => (
+  <div className={`w-full h-96 ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900' : 'bg-gradient-to-br from-gray-900 to-azellar-navy'} rounded-2xl flex items-center justify-center`}>
     <div className="text-white text-center">
       <div className="animate-spin w-12 h-12 border-4 border-azellar-teal border-t-transparent rounded-full mx-auto mb-4"></div>
       <p className="text-sm opacity-75">Loading 3D Visualization...</p>
@@ -147,9 +148,11 @@ const LoadingFallback = () => (
 );
 
 const DatabaseVisualization = () => {
+  const { isDark } = useTheme();
+
   return (
-    <div className="w-full h-96 bg-gradient-to-br from-gray-900 to-azellar-navy rounded-2xl overflow-hidden relative">
-      <Suspense fallback={<LoadingFallback />}>
+    <div className={`w-full h-96 ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900' : 'bg-gradient-to-br from-gray-900 to-azellar-navy'} rounded-2xl overflow-hidden relative`}>
+      <Suspense fallback={<LoadingFallback isDark={isDark} />}>
         <Canvas 
           camera={{ position: [6, 4, 6], fov: 50 }}
           performance={{ min: 0.5 }}
