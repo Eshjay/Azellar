@@ -148,7 +148,11 @@ const Home = () => {
                 className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-                  {stat.number}
+                  <CountingNumber 
+                    end={parseInt(stat.number.replace(/[^\d]/g, '') || '0')} 
+                    suffix={stat.number.replace(/[\d]/g, '')}
+                    duration={2}
+                  />
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </motion.div>
