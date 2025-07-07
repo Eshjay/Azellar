@@ -181,7 +181,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -189,10 +189,10 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
               Meet Our <span className="gradient-text">Team</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
               Our team of experts brings decades of combined experience in database technologies and DevOps practices.
             </p>
           </motion.div>
@@ -204,7 +204,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="text-center">
                   <img
@@ -212,14 +212,14 @@ const About = () => {
                     alt={member.name}
                     className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                   />
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{member.name}</h3>
                   <p className="text-azellar-teal font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 transition-colors duration-300">{member.bio}</p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {member.expertise.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="bg-azellar-teal/10 text-azellar-teal px-3 py-1 rounded-full text-xs font-medium"
+                        className="bg-azellar-teal/10 dark:bg-azellar-teal/20 text-azellar-teal px-3 py-1 rounded-full text-xs font-medium"
                       >
                         {skill}
                       </span>
