@@ -78,7 +78,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -86,10 +86,10 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
               Get in <span className="gradient-text">Touch</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
               We're here to help you succeed. Choose the best way to reach us.
             </p>
           </motion.div>
@@ -106,9 +106,9 @@ const Contact = () => {
                 <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mx-auto mb-6">
                   <info.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{info.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{info.title}</h3>
                 <p className="text-azellar-teal font-semibold mb-1">{info.details}</p>
-                <p className="text-gray-600 text-sm">{info.subtext}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-300">{info.subtext}</p>
               </motion.div>
             ))}
           </div>
