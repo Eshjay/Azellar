@@ -254,7 +254,7 @@ const Services = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <DatabaseVisualization />
+            <DatabaseVisualizationFallback />
           </motion.div>
         </div>
       </section>
