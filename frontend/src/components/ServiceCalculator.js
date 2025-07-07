@@ -211,13 +211,13 @@ const ServiceCalculator = () => {
   }
 
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto transition-colors duration-300">
       <div className="text-center mb-8">
         <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-full flex items-center justify-center mx-auto mb-4">
           <Calculator className="w-8 h-8 text-white" />
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Service Calculator</h3>
-        <p className="text-gray-600">Get an instant estimate for your project</p>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">Service Calculator</h3>
+        <p className="text-gray-600 dark:text-gray-300 transition-colors duration-300">Get an instant estimate for your project</p>
       </div>
 
       {/* Progress Bar */}
