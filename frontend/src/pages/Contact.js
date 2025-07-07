@@ -55,7 +55,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden bg-gradient-to-r from-azellar-navy to-azellar-blue">
         <div className="absolute inset-0 hero-pattern opacity-10"></div>
