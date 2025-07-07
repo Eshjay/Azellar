@@ -2,6 +2,13 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Calendar, Clock, User, ArrowRight, Search, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { 
+  blogArticles, 
+  blogCategories, 
+  getFeaturedArticles, 
+  getArticlesByCategory, 
+  searchArticles 
+} from '../data/blogData';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
