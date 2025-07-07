@@ -30,27 +30,6 @@ const Home = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CTO, TechCorp',
-      content: 'Azellar transformed our database infrastructure. Performance improved by 300% and downtime became virtually zero.',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b977?w=64&h=64&fit=crop&crop=face',
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Lead Developer, DataFlow',
-      content: 'The team at Azellar is exceptional. Their expertise in database optimization saved us months of development time.',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
-    },
-    {
-      name: 'Lisa Rodriguez',
-      role: 'VP Engineering, CloudTech',
-      content: 'Professional, knowledgeable, and results-driven. Azellar exceeded our expectations in every way.',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
-    },
-  ];
-
   const stats = [
     { number: '500+', label: 'Projects Completed' },
     { number: '99.9%', label: 'Uptime Guaranteed' },
