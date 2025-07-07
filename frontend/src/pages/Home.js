@@ -3,7 +3,7 @@ import { ChevronRight, Database, Shield, Zap, Users, Star, ArrowRight } from 'lu
 import { Link } from 'react-router-dom';
 import TestimonialsSlider from '../components/TestimonialsSlider';
 import ServiceCalculator from '../components/ServiceCalculator';
-import DatabaseVisualization from '../components/DatabaseVisualization';
+import DatabaseVisualizationFallback from '../components/DatabaseVisualizationFallback';
 import { CountingNumber, FloatingElements } from '../components/AdvancedAnimations';
 
 const Home = () => {
