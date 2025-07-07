@@ -1,31 +1,8 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 import AdvancedContactForm from '../components/AdvancedContactForm';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    inquiryType: 'general',
-    message: '',
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const contactInfo = [
     {
       icon: Mail,
@@ -145,79 +122,85 @@ const Contact = () => {
           >
             <AdvancedContactForm />
           </motion.div>
+        </div>
+      </section>
 
-            {/* Office Locations */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Offices</h3>
-                <p className="text-gray-600 mb-8">
-                  We have offices across the United States to better serve our clients.
-                </p>
-              </div>
+      {/* Office Locations */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Offices</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We have offices across the United States to better serve our clients.
+            </p>
+          </motion.div>
 
-              <div className="space-y-6">
-                {offices.map((office, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
-                      office.primary
-                        ? 'border-azellar-teal bg-gradient-to-br from-azellar-teal/5 to-azellar-cyan/5'
-                        : 'border-gray-200 bg-white hover:border-azellar-teal/50'
-                    }`}
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-lg flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <h4 className="text-lg font-bold text-gray-900">{office.city}</h4>
-                          {office.primary && (
-                            <span className="bg-azellar-teal text-white px-2 py-1 rounded-full text-xs font-medium">
-                              HQ
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-gray-600 mb-1">{office.address}</p>
-                        <p className="text-gray-600 mb-2">{office.postal}</p>
-                        <p className="text-azellar-teal font-semibold">{office.phone}</p>
-                      </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {offices.map((office, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
+                  office.primary
+                    ? 'border-azellar-teal bg-gradient-to-br from-azellar-teal/5 to-azellar-cyan/5'
+                    : 'border-gray-200 bg-white hover:border-azellar-teal/50'
+                }`}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-lg flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <h4 className="text-lg font-bold text-gray-900">{office.city}</h4>
+                      {office.primary && (
+                        <span className="bg-azellar-teal text-white px-2 py-1 rounded-full text-xs font-medium">
+                          HQ
+                        </span>
+                      )}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Response Time</h4>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">General Inquiries</span>
-                    <span className="text-azellar-teal font-semibold">24 hours</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Sales Questions</span>
-                    <span className="text-azellar-teal font-semibold">4 hours</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Support Tickets</span>
-                    <span className="text-azellar-teal font-semibold">2 hours</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Emergency Support</span>
-                    <span className="text-azellar-teal font-semibold">15 minutes</span>
+                    <p className="text-gray-600 mb-1">{office.address}</p>
+                    <p className="text-gray-600 mb-2">{office.postal}</p>
+                    <p className="text-azellar-teal font-semibold">{office.phone}</p>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto"
+          >
+            <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Response Time Guarantee</h4>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">General Inquiries</span>
+                <span className="text-azellar-teal font-semibold">24 hours</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Sales Questions</span>
+                <span className="text-azellar-teal font-semibold">4 hours</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Support Tickets</span>
+                <span className="text-azellar-teal font-semibold">2 hours</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Emergency Support</span>
+                <span className="text-azellar-teal font-semibold">15 minutes</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
