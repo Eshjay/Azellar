@@ -68,7 +68,7 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-gray-700 hover:text-azellar-teal transition-colors"
+            className="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-azellar-teal transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
