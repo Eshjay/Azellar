@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Database, Zap, Shield, Cloud, Users, BookOpen, HardDrive, FileCheck } from 'lucide-react';
+import { Database, Zap, Shield, Users, Cloud, BarChart, CheckCircle, ArrowRight } from 'lucide-react';
+import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
 import { Link } from 'react-router-dom';
 import DatabaseVisualizationFallback from '../components/DatabaseVisualizationFallback';
 import ServiceCalculator from '../components/ServiceCalculator';
