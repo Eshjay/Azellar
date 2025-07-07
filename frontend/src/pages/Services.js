@@ -149,17 +149,8 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Hero Section */}
-      <section 
-        className="relative py-32 overflow-hidden"
-        style={{
-          backgroundImage: `url('https://images.pexels.com/photos/5475811/pexels-photo-5475811.jpeg?w=1920&h=1080&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-azellar-navy/90 to-azellar-blue/80"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <OptimizedHeroSection imageUrl={heroImages.services}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -170,11 +161,11 @@ const Services = () => {
               Our <span className="bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">Services</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto">
-              Comprehensive database consulting and DevOps solutions tailored to your business needs.
+              Comprehensive database solutions designed to optimize, secure, and scale your data infrastructure.
             </p>
           </motion.div>
         </div>
-      </section>
+      </OptimizedHeroSection>
 
       {/* Services Grid */}
       <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
