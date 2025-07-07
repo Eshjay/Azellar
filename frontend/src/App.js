@@ -20,6 +20,11 @@ import { preloadHeroImages } from "./utils/heroImages";
 import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    // Preload hero images for faster loading
+    preloadHeroImages();
+  }, []);
+
   return (
     <ThemeProvider>
       <div className="App bg-white dark:bg-gray-900 transition-colors duration-300">
