@@ -160,7 +160,7 @@ const TestimonialsSlider = () => {
                 </div>
 
                 {/* Content */}
-                <blockquote className="text-xl md:text-2xl text-gray-700 font-medium leading-relaxed mb-8 italic">
+                <blockquote className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium leading-relaxed mb-8 italic transition-colors duration-300">
                   "{currentTestimonial.content}"
                 </blockquote>
 
