@@ -157,7 +157,7 @@ const LiveChat = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className={`fixed bottom-6 right-6 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 ${
+            className={`fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 transition-colors duration-300 ${
               isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
             } transition-all duration-300 overflow-hidden`}
           >
@@ -194,7 +194,7 @@ const LiveChat = () => {
             {!isMinimized && (
               <>
                 {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[400px]">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[400px] bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
                   {messages.map((message) => (
                     <motion.div
                       key={message.id}
@@ -208,18 +208,18 @@ const LiveChat = () => {
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                           message.sender === 'user' 
                             ? 'bg-azellar-teal text-white' 
-                            : 'bg-gray-100 text-gray-600'
+                            : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300'
                         }`}>
                           {message.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                         </div>
                         <div className={`rounded-2xl px-4 py-2 ${
                           message.sender === 'user'
                             ? 'bg-azellar-teal text-white'
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-500'
                         }`}>
                           <p className="text-sm">{message.text}</p>
                           <p className={`text-xs mt-1 ${
-                            message.sender === 'user' ? 'text-azellar-aqua' : 'text-gray-500'
+                            message.sender === 'user' ? 'text-azellar-aqua' : 'text-gray-500 dark:text-gray-400'
                           }`}>
                             {formatTime(message.timestamp)}
                           </p>
@@ -235,10 +235,10 @@ const LiveChat = () => {
                       animate={{ opacity: 1 }}
                       className="flex items-start space-x-2"
                     >
-                      <div className="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300 flex items-center justify-center">
                         <Bot className="w-4 h-4" />
                       </div>
-                      <div className="bg-gray-100 rounded-2xl px-4 py-2">
+                      <div className="bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 rounded-2xl px-4 py-2">
                         <div className="flex space-x-1">
                           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -253,14 +253,14 @@ const LiveChat = () => {
 
                 {/* Quick Replies */}
                 {messages.length === 1 && (
-                  <div className="px-4 pb-2">
-                    <p className="text-xs text-gray-500 mb-2">Quick questions:</p>
+                  <div className="px-4 pb-2 bg-white dark:bg-gray-800 transition-colors duration-300">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick questions:</p>
                     <div className="flex flex-wrap gap-2">
                       {quickReplies.map((reply, index) => (
                         <button
                           key={index}
                           onClick={() => handleQuickReply(reply)}
-                          className="text-xs bg-gray-100 hover:bg-azellar-teal/10 hover:text-azellar-teal px-3 py-1 rounded-full transition-colors"
+                          className="text-xs bg-gray-100 dark:bg-gray-700 hover:bg-azellar-teal/10 hover:text-azellar-teal px-3 py-1 rounded-full transition-colors"
                         >
                           {reply}
                         </button>
@@ -270,7 +270,7 @@ const LiveChat = () => {
                 )}
 
                 {/* Input */}
-                <div className="border-t border-gray-200 p-4">
+                <div className="border-t border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800 transition-colors duration-300">
                   <div className="flex items-center space-x-2">
                     <input
                       ref={inputRef}
@@ -279,7 +279,7 @@ const LiveChat = () => {
                       onChange={(e) => setNewMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
-                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-azellar-teal focus:border-transparent outline-none"
+                      className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:ring-2 focus:ring-azellar-teal focus:border-transparent outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-300"
                     />
                     <button
                       onClick={handleSendMessage}

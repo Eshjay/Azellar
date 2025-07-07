@@ -25,7 +25,7 @@ const Blog = () => {
   const featuredArticles = getFeaturedArticles();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden bg-gradient-to-r from-azellar-navy to-azellar-blue">
         <div className="absolute inset-0 hero-pattern opacity-10"></div>
@@ -48,7 +48,7 @@ const Blog = () => {
       </section>
 
       {/* Search and Filter */}
-      <section className="py-12 bg-white border-b border-gray-200">
+      <section className="py-12 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
             {/* Search */}
@@ -59,7 +59,7 @@ const Blog = () => {
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-300"
               />
             </div>
 
@@ -72,7 +72,7 @@ const Blog = () => {
                   className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ${
                     selectedCategory === category.id
                       ? 'bg-azellar-teal text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   {category.name} ({category.count})
@@ -85,7 +85,7 @@ const Blog = () => {
 
       {/* Featured Articles */}
       {selectedCategory === 'all' && (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -93,10 +93,10 @@ const Blog = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
                 Featured <span className="gradient-text">Articles</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
                 Our most popular and impactful articles on database management and DevOps.
               </p>
             </motion.div>
@@ -108,7 +108,7 @@ const Blog = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
                 >
                   <div className="relative">
                     <img
@@ -124,7 +124,7 @@ const Blog = () => {
                   </div>
                   
                   <div className="p-8">
-                    <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+                    <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                       <div className="flex items-center">
                         <User className="w-4 h-4 mr-1" />
                         {article.author}
@@ -139,14 +139,14 @@ const Blog = () => {
                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{article.title}</h3>
-                    <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300">{article.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-300">{article.excerpt}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-6">
                       {article.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="bg-azellar-teal/10 text-azellar-teal px-2 py-1 rounded-full text-xs font-medium"
+                          className="bg-azellar-teal/10 dark:bg-azellar-teal/20 text-azellar-teal px-2 py-1 rounded-full text-xs font-medium"
                         >
                           {tag}
                         </span>
@@ -169,7 +169,7 @@ const Blog = () => {
       )}
 
       {/* All Articles */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -177,10 +177,10 @@ const Blog = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
               Latest <span className="gradient-text">Articles</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
               Stay updated with the latest insights and best practices in database management.
             </p>
           </motion.div>
@@ -192,7 +192,7 @@ const Blog = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
               >
                 <div className="relative">
                   <img
@@ -213,7 +213,7 @@ const Blog = () => {
                 </div>
                 
                 <div className="p-6">
-                  <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+                  <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
                     <div className="flex items-center">
                       <User className="w-4 h-4 mr-1" />
                       {article.author}
@@ -224,14 +224,14 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{article.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm">{article.excerpt}</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300">{article.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm transition-colors duration-300">{article.excerpt}</p>
                   
                   <div className="flex flex-wrap gap-1 mb-4">
                     {article.tags.slice(0, 2).map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="bg-azellar-teal/10 text-azellar-teal px-2 py-1 rounded-full text-xs font-medium"
+                        className="bg-azellar-teal/10 dark:bg-azellar-teal/20 text-azellar-teal px-2 py-1 rounded-full text-xs font-medium"
                       >
                         {tag}
                       </span>
@@ -252,7 +252,7 @@ const Blog = () => {
 
           {filteredArticles.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No articles found matching your criteria.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-lg">No articles found matching your criteria.</p>
             </div>
           )}
         </div>
@@ -277,7 +277,7 @@ const Blog = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-6 py-3 rounded-lg border-0 focus:ring-2 focus:ring-azellar-aqua"
+                className="w-full px-6 py-3 rounded-lg border-0 focus:ring-2 focus:ring-azellar-aqua bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               />
               <button className="btn-secondary px-8 py-3 whitespace-nowrap">
                 Subscribe
