@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Database, Zap, Shield, Cloud, Users, BookOpen, HardDrive, FileCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import DatabaseVisualization from '../components/DatabaseVisualization';
+import DatabaseVisualizationFallback from '../components/DatabaseVisualizationFallback';
 import ServiceCalculator from '../components/ServiceCalculator';
 
 const Services = () => {
