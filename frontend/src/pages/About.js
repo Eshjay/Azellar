@@ -1,85 +1,73 @@
 import { motion } from 'framer-motion';
-import { Target, Heart, Users, Zap, Shield, Globe } from 'lucide-react';
+import { Database, Users, Award, Target, CheckCircle } from 'lucide-react';
+import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
 
 const About = () => {
   const values = [
     {
-      icon: Heart,
-      title: 'Customer-Centricity',
-      description: 'We put our clients first, understanding their unique challenges and delivering tailored solutions that drive real business value.',
-    },
-    {
-      icon: Shield,
-      title: 'Integrity',
-      description: 'We maintain the highest ethical standards in all our interactions, ensuring transparency and trust in every partnership.',
+      icon: Target,
+      title: 'Excellence',
+      description: 'We strive for perfection in every project, delivering solutions that exceed expectations.',
     },
     {
       icon: Users,
       title: 'Collaboration',
-      description: 'We work closely with your team, sharing knowledge and building lasting relationships that extend beyond project completion.',
+      description: 'We work closely with our clients to understand their unique challenges and goals.',
     },
     {
-      icon: Zap,
+      icon: Database,
       title: 'Innovation',
-      description: 'We stay at the forefront of database and DevOps technologies, bringing cutting-edge solutions to complex challenges.',
+      description: 'We leverage cutting-edge technologies to solve complex database challenges.',
     },
     {
-      icon: Target,
-      title: 'Excellence',
-      description: 'We deliver exceptional results through rigorous testing, continuous improvement, and unwavering attention to detail.',
-    },
-    {
-      icon: Globe,
-      title: 'Global Reach',
-      description: 'We serve clients worldwide, bringing enterprise-grade solutions to organizations of all sizes and industries.',
+      icon: Award,
+      title: 'Reliability',
+      description: 'Our proven track record speaks to our commitment to delivering reliable solutions.',
     },
   ];
 
   const team = [
     {
-      name: 'David Chen',
-      role: 'Founder & CEO',
-      bio: 'Former database architect at Google and Oracle with 15+ years of experience in enterprise database systems.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
-      expertise: ['Database Architecture', 'Performance Optimization', 'Team Leadership'],
+      name: 'Sarah Johnson',
+      role: 'Chief Technology Officer',
+      bio: 'Former Lead Database Architect at Fortune 500 companies with 15+ years of experience.',
+      expertise: ['PostgreSQL', 'MongoDB', 'AWS RDS', 'Performance Tuning'],
     },
     {
-      name: 'Sarah Rodriguez',
-      role: 'CTO & Co-Founder',
-      bio: 'DevOps expert and former principal engineer at AWS, specializing in cloud infrastructure and automation.',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b977?w=300&h=300&fit=crop&crop=face',
-      expertise: ['Cloud Infrastructure', 'DevOps', 'Automation'],
+      name: 'Michael Chen',
+      role: 'Senior DevOps Engineer',
+      bio: 'Kubernetes and cloud infrastructure specialist with expertise in automation and CI/CD.',
+      expertise: ['Kubernetes', 'Docker', 'CI/CD', 'Infrastructure as Code'],
     },
     {
-      name: 'Michael Kim',
-      role: 'Lead Database Consultant',
-      bio: 'Database performance tuning specialist with expertise in PostgreSQL, MySQL, and MongoDB optimization.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
-      expertise: ['Performance Tuning', 'Database Migration', 'Query Optimization'],
+      name: 'David Rodriguez',
+      role: 'Database Security Specialist',
+      bio: 'Cybersecurity expert focused on database security and compliance frameworks.',
+      expertise: ['Security Audits', 'HIPAA', 'SOC 2', 'Access Controls'],
     },
     {
-      name: 'Lisa Wang',
-      role: 'Security & Compliance Lead',
-      bio: 'Cybersecurity expert with deep experience in database security, compliance, and risk management.',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
-      expertise: ['Security Audits', 'Compliance', 'Risk Management'],
+      name: 'Emily Davis',
+      role: 'Solutions Architect',
+      bio: 'Experienced in designing scalable database architectures for high-growth companies.',
+      expertise: ['System Design', 'Scaling', 'Cloud Migration', 'Architecture'],
     },
   ];
 
+  const milestones = [
+    { year: '2018', event: 'Azellar founded with a vision to democratize database expertise' },
+    { year: '2019', event: 'Completed first major enterprise migration (50TB+ database)' },
+    { year: '2020', event: 'Launched Azellar Academy training programs' },
+    { year: '2021', event: 'Achieved SOC 2 Type II certification' },
+    { year: '2022', event: 'Expanded to serve clients across 15 countries' },
+    { year: '2023', event: 'Reached 500+ successful project completions' },
+    { year: '2024', event: 'Launched 24/7 enterprise support services' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section 
-        className="relative py-32 overflow-hidden"
-        style={{
-          backgroundImage: `url('https://images.pexels.com/photos/7562452/pexels-photo-7562452.jpeg?w=1920&h=1080&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-azellar-navy/90 to-azellar-blue/80"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <OptimizedHeroSection imageUrl={heroImages.about}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,61 +78,53 @@ const About = () => {
               About <span className="bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">Azellar</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto">
-              We're passionate about empowering businesses with robust, scalable database solutions and cutting-edge DevOps practices.
+              We're passionate about helping businesses unlock the full potential of their data through expert database consulting and DevOps solutions.
             </p>
           </motion.div>
         </div>
-      </section>
+      </OptimizedHeroSection>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
             >
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
                 Our <span className="gradient-text">Mission</span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-                To empower businesses with world-class database and DevOps solutions that drive innovation, 
-                ensure reliability, and enable sustainable growth. We believe that every organization deserves 
-                access to enterprise-grade database expertise, regardless of size or industry.
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                To empower businesses with robust, scalable, and secure database solutions that drive innovation and growth. We believe that every organization deserves access to enterprise-grade database expertise, regardless of size or industry.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-                Our mission is to bridge the gap between complex database technologies and business objectives, 
-                making advanced database solutions accessible and practical for organizations worldwide.
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Our mission is to bridge the gap between complex database technologies and business objectives, making data management accessible, efficient, and strategic.
               </p>
             </motion.div>
-
+            
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
                 Our <span className="gradient-text">Vision</span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-                To become the world's most trusted partner for database consulting and DevOps solutions, 
-                setting new standards for excellence in database architecture, performance, and security.
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                To be the global leader in database consulting, known for our innovation, reliability, and commitment to client success. We envision a world where businesses can focus on their core objectives while we handle the complexities of their data infrastructure.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-                We envision a future where businesses can focus on their core competencies while we handle 
-                the complexities of database management, ensuring their data infrastructure scales seamlessly 
-                with their growth.
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                We're building a future where database management is not a barrier to innovation, but a catalyst for business transformation.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
+      {/* Values */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -152,36 +132,36 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-              Our <span className="gradient-text">Core Values</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Our <span className="gradient-text">Values</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              These values guide everything we do and define who we are as a company.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              The principles that guide everything we do and every decision we make.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mx-auto mb-6">
                   <value.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 transition-colors duration-300">{value.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      {/* Team */}
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -189,11 +169,11 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Meet Our <span className="gradient-text">Team</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              Our team of experts brings decades of combined experience in database technologies and DevOps practices.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Experienced professionals dedicated to your success.
             </p>
           </motion.div>
 
@@ -204,30 +184,68 @@ const About = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg text-center"
               >
-                <div className="text-center">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  />
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{member.name}</h3>
-                  <p className="text-azellar-teal font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 transition-colors duration-300">{member.bio}</p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {member.expertise.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="bg-azellar-teal/10 dark:bg-azellar-teal/20 text-azellar-teal px-3 py-1 rounded-full text-xs font-medium"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                <div className="w-20 h-20 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{member.name}</h3>
+                <p className="text-azellar-teal font-semibold mb-4">{member.role}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">{member.bio}</p>
+                <div className="space-y-2">
+                  {member.expertise.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <CheckCircle className="w-4 h-4 text-azellar-teal mr-2" />
+                      {skill}
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Company Timeline */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Our <span className="gradient-text">Journey</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Key milestones in our mission to transform database consulting.
+            </p>
+          </motion.div>
+
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-azellar-navy to-azellar-teal"></div>
+            <div className="space-y-12">
+              {milestones.map((milestone, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`relative flex items-center ${
+                    index % 2 === 0 ? 'justify-end' : 'justify-start'
+                  }`}
+                >
+                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
+                    <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                      <div className="text-2xl font-bold gradient-text mb-2">{milestone.year}</div>
+                      <p className="text-gray-600 dark:text-gray-300">{milestone.event}</p>
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-full border-4 border-white dark:border-gray-800"></div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -242,23 +260,23 @@ const About = () => {
             className="space-y-8"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Ready to Work With Us?
+              Ready to Work Together?
             </h2>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Let's discuss how we can help transform your database infrastructure and accelerate your business growth.
+              Join hundreds of companies that trust Azellar for their database consulting needs.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
               <a
                 href="/contact"
                 className="btn-secondary text-lg px-8 py-4 shadow-glow"
               >
-                Get In Touch
+                Start Your Project
               </a>
               <a
-                href="/services"
+                href="/academy"
                 className="btn-outline text-white border-white hover:bg-white hover:text-azellar-navy text-lg px-8 py-4"
               >
-                Our Services
+                Explore Training
               </a>
             </div>
           </motion.div>

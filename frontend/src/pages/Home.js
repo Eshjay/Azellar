@@ -1,139 +1,115 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Database, Shield, Zap, Users, Star, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Database, Shield, Zap, Users, ArrowRight, CheckCircle, BarChart, Globe, Clock } from 'lucide-react';
 import TestimonialsSlider from '../components/TestimonialsSlider';
 import ServiceCalculator from '../components/ServiceCalculator';
-import DatabaseVisualizationFallback from '../components/DatabaseVisualizationFallback';
-import { CountingNumber, FloatingElements } from '../components/AdvancedAnimations';
+import DatabaseVisualization from '../components/DatabaseVisualization';
+import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
 
 const Home = () => {
   const services = [
     {
       icon: Database,
       title: 'Database Consulting',
-      description: 'Expert guidance for database architecture, optimization, and best practices.',
-    },
-    {
-      icon: Zap,
-      title: 'Performance Tuning',
-      description: 'Maximize your database performance with our advanced optimization techniques.',
+      description: 'Expert guidance for database architecture, migration, and optimization.',
+      features: ['Performance Tuning', 'Migration Services', 'Architecture Design'],
     },
     {
       icon: Shield,
       title: 'Security & Compliance',
-      description: 'Ensure your data meets industry standards with comprehensive security audits.',
+      description: 'Comprehensive security audits and compliance implementation.',
+      features: ['Security Audits', 'HIPAA/SOC 2', 'Access Controls'],
+    },
+    {
+      icon: Zap,
+      title: 'DevOps Automation',
+      description: 'Streamline your database operations with modern DevOps practices.',
+      features: ['CI/CD Pipelines', 'Infrastructure as Code', 'Monitoring'],
     },
     {
       icon: Users,
-      title: 'DevOps & Automation',
-      description: 'Streamline your development workflow with automated deployment pipelines.',
+      title: 'Team Training',
+      description: 'Upskill your team with hands-on database training programs.',
+      features: ['Workshops', 'Certifications', 'Custom Training'],
     },
   ];
 
   const stats = [
-    { number: '500+', label: 'Projects Completed' },
-    { number: '99.9%', label: 'Uptime Guaranteed' },
-    { number: '24/7', label: 'Support Available' },
-    { number: '50+', label: 'Enterprise Clients' },
+    { number: '500+', label: 'Projects Completed', icon: CheckCircle },
+    { number: '50+', label: 'Enterprise Clients', icon: Users },
+    { number: '99.9%', label: 'Uptime Achieved', icon: BarChart },
+    { number: '15+', label: 'Countries Served', icon: Globe },
+    { number: '24/7', label: 'Support Available', icon: Clock },
+  ];
+
+  const clientLogos = [
+    { name: 'TechCorp', logo: '🏢' },
+    { name: 'DataFlow', logo: '💻' },
+    { name: 'CloudTech', logo: '☁️' },
+    { name: 'InnovateLab', logo: '🔬' },
+    { name: 'ScaleUp', logo: '📈' },
+    { name: 'SecureNet', logo: '🔒' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden hero-pattern"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?w=1920&h=1080&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-azellar-navy/90 to-azellar-blue/80"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <OptimizedHeroSection imageUrl={heroImages.home}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold text-white leading-tight"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Scale With
-              <span className="block bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+              Scale With{' '}
+              <span className="bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">
                 Confidence
               </span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto">
               Expert database consulting and DevOps solutions for enterprises that demand precision, performance, and reliability.
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Link
-                to="/contact"
-                className="btn-secondary flex items-center space-x-2 text-lg px-8 py-4 shadow-glow hover:shadow-xl"
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <a
+                href="/contact"
+                className="btn-secondary text-lg px-8 py-4 shadow-glow"
               >
-                <span>Get Started</span>
-                <ChevronRight size={20} />
-              </Link>
-              <Link
-                to="/services"
+                Get Started
+              </a>
+              <a
+                href="/services"
                 className="btn-outline text-white border-white hover:bg-white hover:text-azellar-navy text-lg px-8 py-4"
               >
                 Our Services
-              </Link>
-            </motion.div>
+              </a>
+            </div>
           </motion.div>
         </div>
+      </OptimizedHeroSection>
 
-        {/* Floating Elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 bg-azellar-teal/20 rounded-full blur-xl"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-32 right-16 w-32 h-32 bg-azellar-aqua/20 rounded-full blur-xl"
-          animate={{ y: [0, 20, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      {/* Client Logos */}
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <p className="text-gray-600 dark:text-gray-300 text-lg">Trusted by leading companies worldwide</p>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            {clientLogos.map((client, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-                  <CountingNumber 
-                    end={parseInt(stat.number.replace(/[^\d]/g, '') || '0')} 
-                    suffix={stat.number.replace(/[\d]/g, '')}
-                    duration={2}
-                  />
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">{stat.label}</div>
+                <div className="text-4xl mb-2">{client.logo}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">{client.name}</div>
               </motion.div>
             ))}
           </div>
@@ -141,7 +117,7 @@ const Home = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -149,11 +125,11 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Our <span className="gradient-text">Expertise</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              Comprehensive database and DevOps solutions tailored to your business needs.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Comprehensive database solutions tailored to your business needs.
             </p>
           </motion.div>
 
@@ -164,65 +140,39 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mb-6">
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">{service.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 transition-colors duration-300">{service.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{service.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <CheckCircle className="w-4 h-4 text-azellar-teal mr-2" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Link
-              to="/services"
-              className="btn-primary text-lg px-8 py-4"
+          <div className="text-center mt-12">
+            <a
+              href="/services"
+              className="btn-primary text-lg px-8 py-4 inline-flex items-center"
             >
               View All Services
-            </Link>
-          </motion.div>
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Database Architecture Visualization */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FloatingElements>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-                Interactive <span className="gradient-text">Architecture</span>
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-                Explore our advanced database architecture solutions with our interactive 3D visualization.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <DatabaseVisualizationFallback />
-            </motion.div>
-          </FloatingElements>
-        </div>
-      </section>
-
-      {/* Service Calculator Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
+      {/* Stats Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -230,11 +180,75 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-              Get an <span className="gradient-text">Instant Estimate</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Proven <span className="gradient-text">Results</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              Use our interactive calculator to get a customized quote for your database project.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Numbers that speak to our commitment to excellence.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-gradient-to-r from-azellar-teal to-azellar-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-3xl font-bold gradient-text mb-2">{stat.number}</div>
+                <div className="text-gray-600 dark:text-gray-300 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Database Visualization */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Database <span className="gradient-text">Architecture</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Visualize complex database architectures with our interactive demonstrations.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <DatabaseVisualization />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Service Calculator */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Service <span className="gradient-text">Calculator</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Get an instant estimate for your database consulting needs.
             </p>
           </motion.div>
 
@@ -249,7 +263,31 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <TestimonialsSlider />
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Client <span className="gradient-text">Success Stories</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Hear from businesses that have transformed their data infrastructure with our help.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <TestimonialsSlider />
+          </motion.div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-azellar-navy to-azellar-blue">
@@ -264,22 +302,21 @@ const Home = () => {
               Ready to Scale Your Database?
             </h2>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Join hundreds of enterprises who trust Azellar for their mission-critical database infrastructure.
+              Let's discuss your challenges and create a solution that drives your business forward.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link
-                to="/contact"
-                className="btn-secondary flex items-center space-x-2 text-lg px-8 py-4 shadow-glow"
+              <a
+                href="/contact"
+                className="btn-secondary text-lg px-8 py-4 shadow-glow"
               >
-                <span>Start Your Project</span>
-                <ArrowRight size={20} />
-              </Link>
-              <Link
-                to="/support"
+                Get Free Consultation
+              </a>
+              <a
+                href="/support"
                 className="btn-outline text-white border-white hover:bg-white hover:text-azellar-navy text-lg px-8 py-4"
               >
                 View Support Plans
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
