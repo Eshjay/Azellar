@@ -165,14 +165,14 @@ const TestimonialsSlider = () => {
                 </blockquote>
 
                 {/* Project & Results */}
-                <div className="bg-gradient-to-r from-azellar-teal/10 to-azellar-cyan/10 rounded-2xl p-6 mb-8">
+                <div className="bg-gradient-to-r from-azellar-teal/10 to-azellar-cyan/10 dark:from-azellar-teal/20 dark:to-azellar-cyan/20 rounded-2xl p-6 mb-8 transition-colors duration-300">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Project:</h4>
-                      <p className="text-gray-700">{currentTestimonial.project}</p>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 transition-colors duration-300">Project:</h4>
+                      <p className="text-gray-700 dark:text-gray-300 transition-colors duration-300">{currentTestimonial.project}</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Results:</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 transition-colors duration-300">Results:</h4>
                       <p className="text-azellar-teal font-semibold">{currentTestimonial.results}</p>
                     </div>
                   </div>
@@ -186,9 +186,9 @@ const TestimonialsSlider = () => {
                     className="w-16 h-16 rounded-full object-cover ring-4 ring-azellar-teal/20"
                   />
                   <div className="text-left">
-                    <div className="font-bold text-lg text-gray-900">{currentTestimonial.name}</div>
+                    <div className="font-bold text-lg text-gray-900 dark:text-white transition-colors duration-300">{currentTestimonial.name}</div>
                     <div className="text-azellar-teal font-semibold">{currentTestimonial.role}</div>
-                    <div className="text-gray-600">{currentTestimonial.company}</div>
+                    <div className="text-gray-600 dark:text-gray-400 transition-colors duration-300">{currentTestimonial.company}</div>
                   </div>
                 </div>
               </motion.div>
