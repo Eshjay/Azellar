@@ -240,7 +240,7 @@ const ServiceCalculator = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h4 className="text-xl font-bold text-gray-900 mb-6">{currentStepData.title}</h4>
+        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">{currentStepData.title}</h4>
         
         <div className="space-y-3">
           {currentStepData.options.map((option) => (
