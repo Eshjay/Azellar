@@ -14,97 +14,15 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const categories = [
-    { id: 'all', name: 'All Articles', count: 12 },
-    { id: 'database', name: 'Database', count: 5 },
-    { id: 'devops', name: 'DevOps', count: 3 },
-    { id: 'performance', name: 'Performance', count: 2 },
-    { id: 'security', name: 'Security', count: 2 },
-  ];
+  const categories = blogCategories;
 
-  const articles = [
-    {
-      id: 1,
-      title: 'Advanced PostgreSQL Performance Tuning Techniques',
-      excerpt: 'Learn advanced techniques to optimize PostgreSQL performance including query optimization, index strategies, and configuration tuning.',
-      author: 'David Chen',
-      date: '2025-01-15',
-      readTime: '8 min read',
-      category: 'database',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
-      featured: true,
-      tags: ['PostgreSQL', 'Performance', 'Optimization'],
-    },
-    {
-      id: 2,
-      title: 'Implementing Zero-Downtime Database Migrations',
-      excerpt: 'A comprehensive guide to performing database migrations without service interruption using blue-green deployments and rolling updates.',
-      author: 'Sarah Rodriguez',
-      date: '2025-01-12',
-      readTime: '12 min read',
-      category: 'devops',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
-      featured: true,
-      tags: ['Migration', 'DevOps', 'Zero-Downtime'],
-    },
-    {
-      id: 3,
-      title: 'Database Security Best Practices for 2025',
-      excerpt: 'Essential security practices to protect your database infrastructure from modern threats and ensure compliance.',
-      author: 'Lisa Wang',
-      date: '2025-01-10',
-      readTime: '10 min read',
-      category: 'security',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop',
-      featured: false,
-      tags: ['Security', 'Compliance', 'Best Practices'],
-    },
-    {
-      id: 4,
-      title: 'MongoDB vs PostgreSQL: Choosing the Right Database',
-      excerpt: 'A detailed comparison of MongoDB and PostgreSQL to help you choose the right database for your application.',
-      author: 'Michael Kim',
-      date: '2025-01-08',
-      readTime: '15 min read',
-      category: 'database',
-      image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&h=400&fit=crop',
-      featured: false,
-      tags: ['MongoDB', 'PostgreSQL', 'Comparison'],
-    },
-    {
-      id: 5,
-      title: 'Automating Database Backups with Kubernetes',
-      excerpt: 'Learn how to set up automated, reliable database backups in Kubernetes environments using CronJobs and persistent volumes.',
-      author: 'Sarah Rodriguez',
-      date: '2025-01-05',
-      readTime: '6 min read',
-      category: 'devops',
-      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=400&fit=crop',
-      featured: false,
-      tags: ['Kubernetes', 'Backup', 'Automation'],
-    },
-    {
-      id: 6,
-      title: 'Index Optimization Strategies for Large Datasets',
-      excerpt: 'Advanced indexing strategies to maintain query performance as your database grows to handle millions of records.',
-      author: 'David Chen',
-      date: '2025-01-03',
-      readTime: '9 min read',
-      category: 'performance',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
-      featured: false,
-      tags: ['Indexing', 'Performance', 'Scalability'],
-    },
-  ];
+  const filteredArticles = searchTerm 
+    ? searchArticles(searchTerm).filter(article => 
+        selectedCategory === 'all' || article.category === selectedCategory
+      )
+    : getArticlesByCategory(selectedCategory);
 
-  const filteredArticles = articles.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const featuredArticles = articles.filter(article => article.featured);
+  const featuredArticles = getFeaturedArticles();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
