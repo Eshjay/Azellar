@@ -88,7 +88,7 @@ const ClientPortal = () => {
       action: 'Performance optimization completed',
       user: 'Michael Kim',
       time: '2 hours ago',
-      icon: Zap,
+      icon: Database,
       color: 'text-green-600',
     },
     {
@@ -146,19 +146,19 @@ const ClientPortal = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'open': return 'bg-red-100 text-red-800';
-      case 'in-progress': return 'bg-yellow-100 text-yellow-800';
-      case 'resolved': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'open': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+      case 'in-progress': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+      case 'resolved': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'high': return 'text-red-600';
-      case 'medium': return 'text-yellow-600';
-      case 'low': return 'text-green-600';
-      default: return 'text-gray-600';
+      case 'high': return 'text-red-600 dark:text-red-400';
+      case 'medium': return 'text-yellow-600 dark:text-yellow-400';
+      case 'low': return 'text-green-600 dark:text-green-400';
+      default: return 'text-gray-600 dark:text-gray-400';
     }
   };
 
@@ -172,17 +172,17 @@ const ClientPortal = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="bg-white rounded-xl p-6 shadow-lg border border-gray-200"
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700"
           >
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm font-medium text-gray-600">{metric.label}</h3>
+              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">{metric.label}</h3>
               <Activity className="w-5 h-5 text-azellar-teal" />
             </div>
             <div className="flex items-baseline">
-              <span className="text-2xl font-bold text-gray-900">{metric.value}</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{metric.value}</span>
               <span className={`ml-2 text-sm font-medium ${
-                metric.trend === 'up' ? 'text-green-600' : 
-                metric.trend === 'down' ? 'text-red-600' : 'text-gray-600'
+                metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 
+                metric.trend === 'down' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'
               }`}>
                 {metric.change}
               </span>
@@ -194,17 +194,17 @@ const ClientPortal = () => {
       {/* Recent Activity & Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Activity */}
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
           <div className="space-y-4">
             {recentActivity.map((activity) => (
               <div key={activity.id} className="flex items-start space-x-3">
-                <div className={`p-2 rounded-full bg-gray-100 ${activity.color}`}>
+                <div className={`p-2 rounded-full bg-gray-100 dark:bg-gray-700 ${activity.color}`}>
                   <activity.icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                  <p className="text-sm text-gray-500">by {activity.user} • {activity.time}</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">{activity.action}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">by {activity.user} • {activity.time}</p>
                 </div>
               </div>
             ))}
@@ -212,25 +212,25 @@ const ClientPortal = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
           <div className="space-y-3">
-            <button className="w-full p-3 text-left rounded-lg border border-gray-200 hover:border-azellar-teal hover:bg-azellar-teal/5 transition-colors">
+            <button className="w-full p-3 text-left rounded-lg border border-gray-200 dark:border-gray-600 hover:border-azellar-teal hover:bg-azellar-teal/5 dark:hover:bg-azellar-teal/10 transition-colors">
               <div className="flex items-center space-x-3">
                 <Ticket className="w-5 h-5 text-azellar-teal" />
-                <span className="font-medium">Create Support Ticket</span>
+                <span className="font-medium text-gray-900 dark:text-white">Create Support Ticket</span>
               </div>
             </button>
-            <button className="w-full p-3 text-left rounded-lg border border-gray-200 hover:border-azellar-teal hover:bg-azellar-teal/5 transition-colors">
+            <button className="w-full p-3 text-left rounded-lg border border-gray-200 dark:border-gray-600 hover:border-azellar-teal hover:bg-azellar-teal/5 dark:hover:bg-azellar-teal/10 transition-colors">
               <div className="flex items-center space-x-3">
                 <Download className="w-5 h-5 text-azellar-teal" />
-                <span className="font-medium">Download Latest Report</span>
+                <span className="font-medium text-gray-900 dark:text-white">Download Latest Report</span>
               </div>
             </button>
-            <button className="w-full p-3 text-left rounded-lg border border-gray-200 hover:border-azellar-teal hover:bg-azellar-teal/5 transition-colors">
+            <button className="w-full p-3 text-left rounded-lg border border-gray-200 dark:border-gray-600 hover:border-azellar-teal hover:bg-azellar-teal/5 dark:hover:bg-azellar-teal/10 transition-colors">
               <div className="flex items-center space-x-3">
                 <BarChart3 className="w-5 h-5 text-azellar-teal" />
-                <span className="font-medium">View Performance Metrics</span>
+                <span className="font-medium text-gray-900 dark:text-white">View Performance Metrics</span>
               </div>
             </button>
           </div>
@@ -242,42 +242,42 @@ const ClientPortal = () => {
   const renderTickets = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-gray-900">Support Tickets</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Support Tickets</h3>
         <button className="btn-primary">Create New Ticket</button>
       </div>
 
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Ticket ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Title
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Priority
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Assignee
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Updated
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
               {tickets.map((ticket) => (
-                <tr key={ticket.id} className="hover:bg-gray-50">
+                <tr key={ticket.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-azellar-teal">
                     {ticket.id}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {ticket.title}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -290,10 +290,10 @@ const ClientPortal = () => {
                       {ticket.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {ticket.assignee}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                     {new Date(ticket.updated).toLocaleDateString()}
                   </td>
                 </tr>
@@ -307,19 +307,19 @@ const ClientPortal = () => {
 
   const renderReports = () => (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900">Reports & Documents</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Reports & Documents</h3>
       
       <div className="grid grid-cols-1 gap-4">
         {reports.map((report) => (
-          <div key={report.id} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+          <div key={report.id} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-azellar-teal/10 rounded-lg">
+                <div className="p-3 bg-azellar-teal/10 dark:bg-azellar-teal/20 rounded-lg">
                   <FileText className="w-6 h-6 text-azellar-teal" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">{report.name}</h4>
-                  <p className="text-sm text-gray-500">
+                  <h4 className="font-semibold text-gray-900 dark:text-white">{report.name}</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     {report.type} • {report.size} • {new Date(report.date).toLocaleDateString()}
                   </p>
                 </div>
@@ -336,17 +336,17 @@ const ClientPortal = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Client Portal</h1>
-          <p className="text-gray-600 mt-2">Manage your projects, tickets, and reports</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Client Portal</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Manage your projects, tickets, and reports</p>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="bg-white rounded-xl shadow-lg mb-8">
-          <div className="border-b border-gray-200">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg mb-8">
+          <div className="border-b border-gray-200 dark:border-gray-700">
             <nav className="flex space-x-8 px-6">
               {[
                 { id: 'dashboard', name: 'Dashboard', icon: BarChart3 },
@@ -360,7 +360,7 @@ const ClientPortal = () => {
                   className={`flex items-center space-x-2 py-4 px-2 border-b-2 font-medium text-sm ${
                     activeTab === tab.id
                       ? 'border-azellar-teal text-azellar-teal'
-                      : 'border-transparent text-gray-500 hover:text-gray-700'
+                      : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                   }`}
                 >
                   <tab.icon className="w-5 h-5" />
@@ -378,8 +378,8 @@ const ClientPortal = () => {
             {activeTab === 'settings' && (
               <div className="text-center py-12">
                 <Settings className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Settings</h3>
-                <p className="text-gray-600">Account settings and preferences coming soon.</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Settings</h3>
+                <p className="text-gray-600 dark:text-gray-400">Account settings and preferences coming soon.</p>
               </div>
             )}
           </div>

@@ -88,7 +88,7 @@ const Support = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
       <section 
         className="relative py-32 overflow-hidden"
@@ -118,7 +118,7 @@ const Support = () => {
       </section>
 
       {/* Support Plans */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -126,10 +126,10 @@ const Support = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Choose Your <span className="gradient-text">Support Level</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Our support plans ensure your database systems run smoothly with proactive monitoring and expert assistance.
             </p>
           </motion.div>
@@ -141,8 +141,8 @@ const Support = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 ${
-                  plan.recommended ? 'border-azellar-teal' : 'border-gray-200'
+                className={`relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 ${
+                  plan.recommended ? 'border-azellar-teal' : 'border-gray-200 dark:border-gray-600'
                 }`}
               >
                 {plan.recommended && (
@@ -154,11 +154,11 @@ const Support = () => {
                 )}
                 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  <p className="text-gray-600 mb-4">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{plan.description}</p>
                   <div className="flex items-baseline justify-center">
                     <span className="text-4xl font-bold gradient-text">{plan.price}</span>
-                    <span className="text-gray-500 ml-2">{plan.period}</span>
+                    <span className="text-gray-500 dark:text-gray-400 ml-2">{plan.period}</span>
                   </div>
                 </div>
 
@@ -166,7 +166,7 @@ const Support = () => {
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center">
                       <Check className="w-5 h-5 text-azellar-teal mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -188,7 +188,7 @@ const Support = () => {
       </section>
 
       {/* Support Form */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -196,10 +196,10 @@ const Support = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Get <span className="gradient-text">Support</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Need immediate help? Submit a support ticket and our team will get back to you promptly.
             </p>
           </motion.div>
@@ -208,12 +208,12 @@ const Support = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 shadow-lg"
+            className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Email Address
                   </label>
                   <input
@@ -222,11 +222,11 @@ const Support = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Phone Number
                   </label>
                   <input
@@ -234,13 +234,13 @@ const Support = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Issue Summary
                 </label>
                 <input
@@ -249,21 +249,21 @@ const Support = () => {
                   value={formData.summary}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   placeholder="Brief description of your issue"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Severity
                   </label>
                   <select
                     name="severity"
                     value={formData.severity}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -272,14 +272,14 @@ const Support = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Component
                   </label>
                   <select
                     name="component"
                     value={formData.component}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   >
                     <option value="">Select Component</option>
                     <option value="database">Database</option>
@@ -293,7 +293,7 @@ const Support = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Detailed Description
                 </label>
                 <textarea
@@ -302,7 +302,7 @@ const Support = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
                   placeholder="Please provide detailed information about your issue, including error messages, steps to reproduce, and any relevant context..."
                 />
               </div>
