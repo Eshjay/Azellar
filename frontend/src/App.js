@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LiveChat from "./components/LiveChat";
 import ThemeSettings from "./components/ThemeSettings";
+import ScrollToTop from "./components/ScrollToTop";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Toaster } from 'react-hot-toast';
 
