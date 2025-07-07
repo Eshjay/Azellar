@@ -190,7 +190,7 @@ body {
 }
 
 .dark .text-gray-500 {
-  @apply text-gray-500;
+  @apply text-gray-400;
 }
 
 /* Dark mode background overrides */
