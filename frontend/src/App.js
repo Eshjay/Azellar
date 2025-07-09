@@ -7,7 +7,7 @@ import Support from "./pages/Support";
 import Academy from "./pages/Academy";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
-import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import ClientPortal from "./pages/ClientPortal";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
