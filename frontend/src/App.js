@@ -49,6 +49,8 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/blog/post/:slug" element={<BlogPost />} />
               
               {/* Academy Routes */}
               <Route path="/akademy/courses" element={<Courses />} />
