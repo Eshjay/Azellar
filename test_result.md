@@ -116,6 +116,9 @@ backend:
       - working: "unknown"
         agent: "main"
         comment: "Supabase client configured but need to verify database structure and connectivity"
+      - working: "unknown"
+        agent: "testing"
+        comment: "Not tested as this is a frontend component. Backend testing agent focuses only on backend functionality."
 
   - task: "Course enrollment email sending"
     implemented: true
