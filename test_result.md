@@ -222,7 +222,9 @@ test_plan:
     - "Supabase database connection and setup"
     - "Course enrollment email sending"
     - "Contact form submission backend"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Course enrollment email sending"
+    - "Contact form submission backend"
   test_all: false
   test_priority: "high_first"
 
