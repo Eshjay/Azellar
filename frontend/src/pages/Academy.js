@@ -1,6 +1,32 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Users, Clock, Award, CheckCircle, Star } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { OptimizedHeroSection, heroImages } from '../utils/heroImages';
+import toast from 'react-hot-toast';
+
+const Academy = () => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleBookSession = (workshopTitle, workshopPrice) => {
+    if (!isAuthenticated) {
+      toast.error('Please sign in to book a session');
+      navigate('/auth/signup?redirect=/dashboard');
+      return;
+    }
+
+    // For now, redirect to contact form with pre-filled workshop info
+    const message = `I would like to book a session for "${workshopTitle}" (${workshopPrice}). Please provide me with available dates and next steps.`;
+    navigate('/contact', { 
+      state: { 
+        inquiry_type: 'training',
+        message: message
+      }
+    });
+    
+    toast.success('Redirecting to contact form to complete booking...');
+  };
 
 const Academy = () => {
   const workshops = [
