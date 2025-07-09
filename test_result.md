@@ -107,11 +107,11 @@ user_problem_statement: "Fix several critical bugs in the Azellar Academy system
 backend:
   - task: "Supabase database connection and setup"
     implemented: true
-    working: "unknown"
+    working: false
     file: "/app/frontend/src/lib/supabase.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
@@ -119,6 +119,9 @@ backend:
       - working: "unknown"
         agent: "testing"
         comment: "Not tested as this is a frontend component. Backend testing agent focuses only on backend functionality."
+      - working: false
+        agent: "testing"
+        comment: "Supabase connection test PASSED but the required database tables (courses, enrollments, profiles, contact_submissions) do not exist. This is likely the cause of the 'Failed to load courses' error. The database structure needs to be created before the application can work properly."
 
   - task: "Course enrollment email sending"
     implemented: true
