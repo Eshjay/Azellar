@@ -53,7 +53,7 @@ def test_contact_email_endpoint():
     # Test data
     payload = {
         "name": "Test User",
-        "email": "test@example.com",
+        "email": "delivered@resend.dev",
         "message": "This is a test message",
         "inquiry_type": "general"
     }
