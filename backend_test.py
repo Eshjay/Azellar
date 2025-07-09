@@ -28,12 +28,16 @@ def test_health_endpoint():
         
         # Verify response
         if response.status_code == 200:
-            data = response.json()
-            if "status" in data and data["status"] == "healthy":
-                logger.info("✅ Health endpoint test PASSED")
-                return True
-            else:
-                logger.error("❌ Health endpoint test FAILED: Invalid response format")
+            try:
+                data = response.json()
+                if "status" in data and data["status"] == "healthy":
+                    logger.info("✅ Health endpoint test PASSED")
+                    return True
+                else:
+                    logger.error("❌ Health endpoint test FAILED: Invalid response format")
+                    return False
+            except json.JSONDecodeError:
+                logger.error("❌ Health endpoint test FAILED: Response is not valid JSON")
                 return False
         else:
             logger.error(f"❌ Health endpoint test FAILED: Status code {response.status_code}")
