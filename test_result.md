@@ -101,3 +101,122 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Fix several critical bugs in the Azellar Academy system: 1) Book Session button not working on Academy page, 2) Failed to load courses error, 3) Unable to update profile error, 4) Blog page routing failures, 5) Contact form submission failures, 6) Restrict client support account creation to admins only"
+
+backend:
+  - task: "Supabase database connection and setup"
+    implemented: true
+    working: "unknown"
+    file: "/app/frontend/src/lib/supabase.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Supabase client configured but need to verify database structure and connectivity"
+
+  - task: "Course enrollment email sending"
+    implemented: true
+    working: "unknown"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Email endpoint exists but needs testing with actual Resend API"
+
+  - task: "Contact form submission backend"
+    implemented: true
+    working: "unknown"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Backend endpoint exists but needs testing"
+
+frontend:
+  - task: "Academy page Book Session button functionality"
+    implemented: true
+    working: "unknown"
+    file: "/app/frontend/src/pages/Academy.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Button functionality exists with proper auth flow, redirects to contact form"
+
+  - task: "Course loading and display"
+    implemented: true
+    working: "unknown"
+    file: "/app/frontend/src/pages/Courses.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Course loading logic exists but depends on Supabase database structure"
+
+  - task: "Profile update functionality"
+    implemented: true
+    working: "unknown"
+    file: "/app/frontend/src/pages/Dashboard.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Profile update form exists but depends on Supabase database"
+
+  - task: "Blog page routing"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/pages/Blog.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Blog page routing needs investigation and fix"
+
+  - task: "Contact form submission"
+    implemented: true
+    working: "unknown"
+    file: "/app/frontend/src/pages/Contact.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "unknown"
+        agent: "main"
+        comment: "Contact form exists but needs testing of submission flow"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Supabase database connection and setup"
+    - "Course enrollment email sending"
+    - "Contact form submission backend"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Continuing from previous agent work on Academy page fixes. Need to test backend database connectivity and email functionality first before frontend testing."
