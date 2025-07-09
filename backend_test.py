@@ -20,7 +20,7 @@ def test_health_endpoint():
     logger.info("Testing health endpoint...")
     
     try:
-        response = requests.get(f"{BACKEND_URL}/health")
+        response = requests.get(f"{BACKEND_URL}/api/health")
         
         # Log the response
         logger.info(f"Status Code: {response.status_code}")
