@@ -11,17 +11,23 @@ if (!supabaseUrl || !supabaseAnonKey) {
   process.exit(1);
 }
 
+console.log('Using Supabase URL:', supabaseUrl);
+console.log('Using Supabase Anon Key:', supabaseAnonKey.substring(0, 10) + '...');
+
 // Create Supabase client
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Test functions
 async function testConnection() {
   try {
+    console.log('Testing connection to Supabase...');
+    
     // Simple query to test connection
     const { data, error } = await supabase.from('courses').select('count()', { count: 'exact', head: true });
     
     if (error) {
       console.error('Connection test failed:', error.message);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       return false;
     }
     
@@ -29,21 +35,26 @@ async function testConnection() {
     return true;
   } catch (err) {
     console.error('Connection test failed with exception:', err.message);
+    console.error('Exception stack:', err.stack);
     return false;
   }
 }
 
 async function verifyTableExists(tableName) {
   try {
+    console.log(`Checking if table '${tableName}' exists...`);
+    
     // Try to select from the table
     const { data, error } = await supabase.from(tableName).select('count()', { count: 'exact', head: true });
     
     if (error) {
       if (error.code === '42P01') { // Table does not exist
         console.error(`Table '${tableName}' does not exist`);
+        console.error('Error details:', JSON.stringify(error, null, 2));
         return false;
       } else {
         console.error(`Error checking table '${tableName}':`, error.message);
+        console.error('Error details:', JSON.stringify(error, null, 2));
         return false;
       }
     }
@@ -52,12 +63,15 @@ async function verifyTableExists(tableName) {
     return true;
   } catch (err) {
     console.error(`Error checking table '${tableName}':`, err.message);
+    console.error('Exception stack:', err.stack);
     return false;
   }
 }
 
 async function testCourseData() {
   try {
+    console.log('Testing course data retrieval...');
+    
     // Get courses
     const { data, error } = await supabase
       .from('courses')
@@ -66,6 +80,7 @@ async function testCourseData() {
     
     if (error) {
       console.error('Course data test failed:', error.message);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       return false;
     }
     
@@ -79,12 +94,15 @@ async function testCourseData() {
     return true;
   } catch (err) {
     console.error('Course data test failed with exception:', err.message);
+    console.error('Exception stack:', err.stack);
     return false;
   }
 }
 
 async function testProfileAndEnrollment() {
   try {
+    console.log('Testing profile and enrollment tables...');
+    
     // Check if profiles table has any data
     const { data: profiles, error: profileError } = await supabase
       .from('profiles')
@@ -93,6 +111,7 @@ async function testProfileAndEnrollment() {
     
     if (profileError) {
       console.error('Profile test failed:', profileError.message);
+      console.error('Error details:', JSON.stringify(profileError, null, 2));
       return false;
     }
     
@@ -108,6 +127,7 @@ async function testProfileAndEnrollment() {
     
     if (enrollmentError) {
       console.error('Enrollment test failed:', enrollmentError.message);
+      console.error('Error details:', JSON.stringify(enrollmentError, null, 2));
       return false;
     }
     
@@ -115,6 +135,7 @@ async function testProfileAndEnrollment() {
     return true;
   } catch (err) {
     console.error('Profile and enrollment test failed with exception:', err.message);
+    console.error('Exception stack:', err.stack);
     return false;
   }
 }
@@ -167,6 +188,9 @@ async function runTests() {
   // Exit with appropriate code
   process.exit(allPassed ? 0 : 1);
 }
+
+// Run the tests
+runTests();
 
 // Run the tests
 runTests();
