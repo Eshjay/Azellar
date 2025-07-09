@@ -229,3 +229,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Continuing from previous agent work on Academy page fixes. Need to test backend database connectivity and email functionality first before frontend testing."
+  - agent: "testing"
+    message: "Completed backend API testing. Found that the health endpoint and CORS configuration are working correctly. However, the email sending functionality (both contact form and course enrollment) is failing due to an invalid Resend API key. The API key is not being properly loaded from the environment variables in the supervisor configuration. The backend code is correctly implemented, but the environment setup needs to be fixed to make the email functionality work."
