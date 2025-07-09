@@ -136,7 +136,7 @@ async def send_enrollment_email(request: EnrollmentEmailRequest):
     """Send confirmation email when student enrolls in a course"""
     try:
         enrollment_email = resend.Emails.send({
-            "from": "courses@azellar.com",
+            "from": "onboarding@resend.dev",
             "to": request.student_email,
             "subject": f"Enrollment Confirmation - {request.course_name}",
             "html": f"""
