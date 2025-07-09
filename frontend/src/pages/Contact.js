@@ -1,32 +1,119 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
-import AdvancedContactForm from '../components/AdvancedContactForm';
+import { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { db } from '../lib/supabase';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+    inquiry_type: 'general'
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const inquiryTypes = [
+    { value: 'general', label: 'General Inquiry', description: 'General questions about our services' },
+    { value: 'sales', label: 'Sales', description: 'Pricing and service information' },
+    { value: 'training', label: 'Training', description: 'Academy courses and workshops' },
+    { value: 'support', label: 'Support', description: 'Technical support and help' }
+  ];
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Submit to Supabase
+      const { data, error } = await db.submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        inquiry_type: formData.inquiry_type,
+        status: 'pending'
+      });
+
+      if (error) {
+        toast.error('Failed to submit your message. Please try again.');
+        console.error('Contact form error:', error);
+        return;
+      }
+
+      // Send email notification
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            inquiry_type: formData.inquiry_type
+          }),
+        });
+
+        if (!response.ok) {
+          console.error('Failed to send email notification');
+        }
+      } catch (emailError) {
+        console.error('Email sending error:', emailError);
+      }
+
+      // Show success
+      setSubmitted(true);
+      toast.success('Thank you for your message! We\'ll get back to you soon.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+        inquiry_type: 'general'
+      });
+      
+    } catch (error) {
+      console.error('Contact submission error:', error);
+      toast.error('Failed to submit your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const contactInfo = [
     {
       icon: Mail,
       title: 'Email',
       details: 'hello@azellar.com',
-      subtext: 'We respond within 24 hours',
+      link: 'mailto:hello@azellar.com',
     },
     {
       icon: Phone,
       title: 'Phone',
       details: '+1 (555) 123-4567',
-      subtext: 'Mon-Fri 9AM-6PM PST',
+      link: 'tel:+15551234567',
     },
     {
-      icon: MessageCircle,
-      title: 'WhatsApp',
-      details: '+1 (555) 123-4567',
-      subtext: 'Quick support & questions',
+      icon: MapPin,
+      title: 'Address',
+      details: '123 Database Street, Tech City, TC 12345',
+      link: 'https://maps.google.com',
     },
     {
       icon: Clock,
       title: 'Business Hours',
-      details: 'Mon-Fri 9AM-6PM PST',
-      subtext: 'Saturday 10AM-2PM PST',
+      details: 'Mon-Fri: 9AM-6PM EST',
+      link: null,
     },
   ];
 
