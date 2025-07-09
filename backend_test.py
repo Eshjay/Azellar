@@ -4,6 +4,9 @@ import json
 import sys
 import time
 import logging
+import subprocess
+import os
+import dotenv
 
 # Configure logging
 logging.basicConfig(
@@ -14,6 +17,39 @@ logger = logging.getLogger(__name__)
 
 # Get the backend URL from the frontend .env file
 BACKEND_URL = "https://b91c0085-1ba6-4299-81dc-78e421887aa4.preview.emergentagent.com"
+
+# Load Supabase credentials from frontend .env file
+def load_supabase_credentials():
+    """Load Supabase credentials from frontend .env file"""
+    try:
+        # Try to load from frontend .env file
+        frontend_env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'frontend', '.env')
+        if os.path.exists(frontend_env_path):
+            dotenv.load_dotenv(frontend_env_path)
+            
+        supabase_url = os.environ.get('REACT_APP_SUPABASE_URL')
+        supabase_anon_key = os.environ.get('REACT_APP_SUPABASE_ANON_KEY')
+        
+        if not supabase_url or not supabase_anon_key:
+            # If not found in environment, try to parse the .env file manually
+            with open(frontend_env_path, 'r') as f:
+                env_content = f.read()
+                
+            # Extract values using simple parsing
+            for line in env_content.splitlines():
+                if line.startswith('REACT_APP_SUPABASE_URL='):
+                    supabase_url = line.split('=', 1)[1].strip().strip('"\'')
+                elif line.startswith('REACT_APP_SUPABASE_ANON_KEY='):
+                    supabase_anon_key = line.split('=', 1)[1].strip().strip('"\'')
+        
+        if not supabase_url or not supabase_anon_key:
+            logger.error("Failed to load Supabase credentials from environment or .env file")
+            return None, None
+            
+        return supabase_url, supabase_anon_key
+    except Exception as e:
+        logger.error(f"Error loading Supabase credentials: {str(e)}")
+        return None, None
 
 def test_health_endpoint():
     """Test the health check endpoint"""
