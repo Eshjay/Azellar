@@ -22,7 +22,11 @@ app.add_middleware(
 )
 
 # Configure Resend
-resend.api_key = os.environ.get("RESEND_API_KEY")
+resend_api_key = os.environ.get("RESEND_API_KEY")
+if not resend_api_key:
+    logger.error("RESEND_API_KEY environment variable is not set")
+else:
+    resend.api_key = resend_api_key
 
 # Pydantic models
 class ContactEmailRequest(BaseModel):
