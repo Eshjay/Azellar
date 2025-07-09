@@ -115,7 +115,7 @@ backend:
     status_history:
       - working: "unknown"
         agent: "main"
-        comment: "Supabase client configured but need to verify database structure and connectivity"
+        comment: "Supabase client configured with valid credentials. Database structure and course data needs verification for Academy functionality."
       - working: "unknown"
         agent: "testing"
         comment: "Not tested as this is a frontend component. Backend testing agent focuses only on backend functionality."
