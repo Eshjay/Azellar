@@ -28,7 +28,6 @@ const Academy = () => {
     toast.success('Redirecting to contact form to complete booking...');
   };
 
-const Academy = () => {
   const workshops = [
     {
       title: 'Database Fundamentals',
@@ -406,18 +405,18 @@ const Academy = () => {
               Contact our training team to discuss custom workshops tailored to your organization's needs.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <a
-                href="/contact"
+              <button
+                onClick={() => navigate('/contact', { state: { inquiry_type: 'training' } })}
                 className="btn-secondary text-lg px-8 py-4 shadow-glow"
               >
                 Schedule Consultation
-              </a>
-              <a
-                href="/contact"
+              </button>
+              <button
+                onClick={() => navigate('/contact', { state: { inquiry_type: 'training' } })}
                 className="btn-outline text-white border-white hover:bg-white hover:text-azellar-navy text-lg px-8 py-4"
               >
                 Request Custom Training
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>
