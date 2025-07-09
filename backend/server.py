@@ -185,7 +185,7 @@ async def send_enrollment_email(request: EnrollmentEmailRequest):
         logger.error(f"Error sending enrollment email: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to send enrollment email")
 
-@app.get("/health")
+@app.get("/api/health")
 async def health_check():
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
