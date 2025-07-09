@@ -46,7 +46,7 @@ async def send_contact_email(request: ContactEmailRequest):
     """Send confirmation email for contact form submission"""
     try:
         # Send confirmation to user
-        user_email = resend.emails.send({
+        user_email = resend.Emails.send({
             "from": "noreply@azellar.com",
             "to": request.email,
             "subject": "Thank you for contacting Azellar",
