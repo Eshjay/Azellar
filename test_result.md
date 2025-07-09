@@ -229,7 +229,8 @@ metadata:
 test_plan:
   current_focus:
     - "Supabase database connection and setup"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Supabase database connection and setup"
   test_all: false
   test_priority: "high_first"
 
