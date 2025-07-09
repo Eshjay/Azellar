@@ -200,16 +200,19 @@ frontend:
         comment: "Profile update form exists but depends on Supabase database"
 
   - task: "Blog page routing"
-    implemented: false
-    working: false
-    file: "/app/frontend/src/pages/Blog.js"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/BlogPost.js"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Blog page routing needs investigation and fix"
+      - working: true
+        agent: "main"
+        comment: "Created BlogPost component with dynamic routing for /blog/:id and /blog/post/:slug. Added proper content rendering, loading states, 404 handling, and related articles section."
 
   - task: "Contact form submission"
     implemented: true
