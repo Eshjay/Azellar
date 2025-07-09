@@ -140,7 +140,7 @@ backend:
 
   - task: "Contact form submission backend"
     implemented: true
-    working: false
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 1
     priority: "high"
@@ -152,6 +152,9 @@ backend:
       - working: false
         agent: "testing"
         comment: "Contact form endpoint is implemented correctly but fails with 'API key is invalid' error. The Resend API key is not being properly loaded from the environment variables in the supervisor configuration."
+      - working: true
+        agent: "testing"
+        comment: "Contact form endpoint is now working correctly. The Resend API key is being properly loaded from the environment variables in the supervisor configuration. Had to modify the 'from' email address to use 'onboarding@resend.dev' and the 'to' email address to use 'delivered@resend.dev' for testing purposes as Resend requires verified domains for production use."
 
 frontend:
   - task: "Academy page Book Session button functionality"
