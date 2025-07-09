@@ -165,27 +165,33 @@ backend:
 frontend:
   - task: "Academy page Book Session button functionality"
     implemented: true
-    working: "unknown"
+    working: true
     file: "/app/frontend/src/pages/Academy.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
         comment: "Button functionality exists with proper auth flow, redirects to contact form"
+      - working: true
+        agent: "main"
+        comment: "Verified 6 Book Session buttons are present and functional on Academy page. Page loads correctly with all workshop details."
 
   - task: "Course loading and display"
     implemented: true
-    working: "unknown"
+    working: true
     file: "/app/frontend/src/pages/Courses.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
         comment: "Course loading logic exists but depends on Supabase database structure"
+      - working: true
+        agent: "main"
+        comment: "Course loading verified working! 6 courses displayed correctly on /akademy/courses with proper pricing, descriptions, and metadata from Supabase database."
 
   - task: "Profile update functionality"
     implemented: true
