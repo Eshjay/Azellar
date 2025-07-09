@@ -92,7 +92,7 @@ def test_enrollment_email_endpoint():
     # Test data
     payload = {
         "student_name": "John Doe",
-        "student_email": "john@example.com",
+        "student_email": "delivered@resend.dev",
         "course_name": "Database Fundamentals",
         "course_details": {
             "duration": "2 days",
