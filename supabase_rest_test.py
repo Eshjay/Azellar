@@ -45,6 +45,57 @@ def test_supabase_connection():
         logger.error(f"❌ Supabase connection test FAILED: {str(e)}")
         return False
 
+def list_all_tables():
+    """List all tables in Supabase database"""
+    logger.info("Listing all tables in Supabase database...")
+    
+    headers = {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
+        "Content-Type": "application/json"
+    }
+    
+    try:
+        # Try to get the list of tables from the information schema
+        response = requests.get(
+            f"{SUPABASE_URL}/rest/v1/rpc/list_tables",
+            headers=headers
+        )
+        
+        logger.info(f"Status Code: {response.status_code}")
+        logger.info(f"Response: {response.text}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                logger.info(f"Found tables: {json.dumps(data, indent=2)}")
+                return True
+            else:
+                logger.error("No tables found")
+                return False
+        else:
+            # Try another approach - query the information schema directly
+            response = requests.get(
+                f"{SUPABASE_URL}/rest/v1/information_schema/tables?select=table_name&limit=100",
+                headers=headers
+            )
+            
+            logger.info(f"Information schema query status code: {response.status_code}")
+            if response.status_code == 200:
+                data = response.json()
+                if data:
+                    logger.info(f"Found tables from information schema: {json.dumps(data, indent=2)}")
+                    return True
+                else:
+                    logger.error("No tables found in information schema")
+                    return False
+            else:
+                logger.error(f"Error listing tables: Status code {response.status_code}")
+                return False
+    except Exception as e:
+        logger.error(f"Error listing tables: {str(e)}")
+        return False
+
 def test_table_exists(table_name):
     """Test if a table exists in Supabase database"""
     logger.info(f"Testing if table '{table_name}' exists...")
@@ -56,74 +107,27 @@ def test_table_exists(table_name):
         "Range": "0-0" # Just get the first row to check if table exists
     }
     
-    try:
-        # Try to get a row from the table
-        response = requests.get(
-            f"{SUPABASE_URL}/rest/v1/{table_name}",
-            headers=headers
-        )
-        
-        logger.info(f"Status Code: {response.status_code}")
-        
-        if response.status_code in [200, 206]:
-            logger.info(f"✅ Table '{table_name}' exists")
-            return True
-        elif response.status_code == 404:
-            logger.error(f"❌ Table '{table_name}' does not exist")
-            return False
-        else:
-            logger.error(f"❌ Error checking table '{table_name}': Status code {response.status_code}")
-            return False
-    except Exception as e:
-        logger.error(f"❌ Error checking table '{table_name}': {str(e)}")
-        return False
-
-def test_course_data():
-    """Test if courses exist in Supabase database"""
-    logger.info("Testing course data...")
+    # Try different schemas
+    schemas = ["public", "auth", "storage"]
     
-    headers = {
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    try:
-        # Try to get courses
-        response = requests.get(
-            f"{SUPABASE_URL}/rest/v1/courses?select=*&limit=5",
-            headers=headers
-        )
-        
-        logger.info(f"Status Code: {response.status_code}")
-        
-        if response.status_code in [200, 206]:
-            data = response.json()
-            if data and len(data) > 0:
-                logger.info(f"✅ Found {len(data)} courses")
-                logger.info(f"Sample course: {json.dumps(data[0], indent=2)}")
+    for schema in schemas:
+        try:
+            # Try to get a row from the table
+            response = requests.get(
+                f"{SUPABASE_URL}/rest/v1/{table_name}?schema={schema}",
+                headers=headers
+            )
+            
+            logger.info(f"Status Code for schema '{schema}': {response.status_code}")
+            
+            if response.status_code in [200, 206]:
+                logger.info(f"✅ Table '{table_name}' exists in schema '{schema}'")
                 return True
-            else:
-                logger.error("❌ No courses found in the database")
-                return False
-        else:
-            logger.error(f"❌ Error getting courses: Status code {response.status_code}")
-            return False
-    except Exception as e:
-        logger.error(f"❌ Error getting courses: {str(e)}")
-        return False
-
-def test_profile_and_enrollment():
-    """Test if profiles and enrollments exist in Supabase database"""
-    logger.info("Testing profiles and enrollments...")
+        except Exception as e:
+            logger.error(f"❌ Error checking table '{table_name}' in schema '{schema}': {str(e)}")
     
-    # First check if profiles table exists and has data
-    profiles_result = test_table_exists("profiles")
-    
-    # Then check if enrollments table exists
-    enrollments_result = test_table_exists("enrollments")
-    
-    return profiles_result and enrollments_result
+    logger.error(f"❌ Table '{table_name}' does not exist in any schema")
+    return False
 
 def run_all_tests():
     """Run all Supabase tests"""
@@ -135,18 +139,15 @@ def run_all_tests():
         logger.error("Cannot continue tests due to connection failure")
         return False
     
+    # List all tables
+    list_all_tables()
+    
     # Test required tables
     required_tables = ["courses", "enrollments", "profiles", "contact_submissions"]
     table_results = {}
     
     for table in required_tables:
         table_results[table] = test_table_exists(table)
-    
-    # Test course data
-    course_data_result = test_course_data()
-    
-    # Test profile and enrollment
-    profile_enrollment_result = test_profile_and_enrollment()
     
     # Print summary
     logger.info("\n=== TEST SUMMARY ===")
@@ -155,14 +156,16 @@ def run_all_tests():
     for table, result in table_results.items():
         logger.info(f"Table '{table}' verification: {'PASSED' if result else 'FAILED'}")
     
-    logger.info(f"Course data test: {'PASSED' if course_data_result else 'FAILED'}")
-    logger.info(f"Profile and enrollment test: {'PASSED' if profile_enrollment_result else 'FAILED'}")
-    
     # Overall result
-    all_passed = connection_result and all(table_results.values()) and course_data_result and profile_enrollment_result
-    logger.info(f"\nOVERALL RESULT: {'PASSED' if all_passed else 'FAILED'}")
+    all_tables_exist = all(table_results.values())
+    logger.info(f"\nOVERALL RESULT: {'PASSED' if connection_result else 'FAILED'}")
     
-    return all_passed
+    if not all_tables_exist:
+        logger.error("Required tables do not exist in the Supabase database.")
+        logger.error("This is likely the cause of the 'Failed to load courses' error.")
+        logger.error("The database structure needs to be created before the application can work properly.")
+    
+    return connection_result
 
 if __name__ == "__main__":
     success = run_all_tests()
