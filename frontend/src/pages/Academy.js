@@ -335,7 +335,10 @@ const Academy = () => {
 
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold gradient-text">{workshop.price}</span>
-                  <button className="btn-primary px-6 py-2 text-sm">
+                  <button 
+                    onClick={() => handleBookSession(workshop.title, workshop.price)}
+                    className="btn-primary px-6 py-2 text-sm hover:transform hover:scale-105 transition-all duration-300"
+                  >
                     Book Session
                   </button>
                 </div>
