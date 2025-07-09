@@ -119,15 +119,18 @@ backend:
 
   - task: "Course enrollment email sending"
     implemented: true
-    working: "unknown"
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
         comment: "Email endpoint exists but needs testing with actual Resend API"
+      - working: false
+        agent: "testing"
+        comment: "Email endpoint is implemented correctly but fails with 'API key is invalid' error. The Resend API key is not being properly loaded from the environment variables in the supervisor configuration."
 
   - task: "Contact form submission backend"
     implemented: true
