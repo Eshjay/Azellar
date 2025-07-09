@@ -91,8 +91,8 @@ async def send_contact_email(request: ContactEmailRequest):
         
         # Send notification to admin
         admin_email = resend.Emails.send({
-            "from": "contact@azellar.com",
-            "to": "admin@azellar.com",
+            "from": "onboarding@resend.dev",
+            "to": "delivered@resend.dev",
             "subject": f"New Contact Form Submission - {request.inquiry_type}",
             "html": f"""
             <!DOCTYPE html>
