@@ -142,12 +142,10 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-azellar-light via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden bg-gradient-to-r from-azellar-navy to-azellar-blue">
-        <div className="absolute inset-0 hero-pattern opacity-10"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-32 bg-gradient-to-r from-azellar-navy to-azellar-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -155,144 +153,244 @@ const Contact = () => {
             className="space-y-8"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white">
-              Contact <span className="bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">Us</span>
+              Get in <span className="bg-gradient-to-r from-azellar-aqua to-azellar-cyan bg-clip-text text-transparent">Touch</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto">
-              Ready to transform your database infrastructure? Get in touch with our experts today.
+              Ready to transform your database infrastructure? Let's discuss your project and explore how we can help you succeed.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Information */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      {/* Contact Form & Info */}
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-              Get in <span className="gradient-text">Touch</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              We're here to help you succeed. Choose the best way to reach us.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <info.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{info.title}</h3>
-                <p className="text-azellar-teal font-semibold mb-1">{info.details}</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-300">{info.subtext}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Advanced Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <AdvancedContactForm />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Office Locations */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Offices</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We have offices across the United States to better serve our clients.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {offices.map((office, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
-                  office.primary
-                    ? 'border-azellar-teal bg-gradient-to-br from-azellar-teal/5 to-azellar-cyan/5'
-                    : 'border-gray-200 bg-white hover:border-azellar-teal/50'
-                }`}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+                Send us a <span className="gradient-text">Message</span>
+              </h2>
+              
+              {submitted ? (
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-8 text-center">
+                  <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <h4 className="text-lg font-bold text-gray-900">{office.city}</h4>
-                      {office.primary && (
-                        <span className="bg-azellar-teal text-white px-2 py-1 rounded-full text-xs font-medium">
-                          HQ
-                        </span>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Message Sent Successfully!
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Thank you for reaching out. We'll get back to you within 24 hours.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Inquiry Type */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+                      What can we help you with?
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {inquiryTypes.map((type) => (
+                        <label
+                          key={type.value}
+                          className={`relative flex items-start p-4 border rounded-lg cursor-pointer transition-all ${
+                            formData.inquiry_type === type.value
+                              ? 'border-azellar-teal bg-azellar-teal/5 dark:bg-azellar-teal/10'
+                              : 'border-gray-300 dark:border-gray-600 hover:border-azellar-teal/50 bg-white dark:bg-gray-800'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="inquiry_type"
+                            value={type.value}
+                            checked={formData.inquiry_type === type.value}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900 dark:text-white">
+                              {type.label}
+                            </div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                              {type.description}
+                            </div>
+                          </div>
+                          {formData.inquiry_type === type.value && (
+                            <CheckCircle className="w-5 h-5 text-azellar-teal flex-shrink-0" />
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Name & Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-azellar-teal focus:border-transparent"
+                      placeholder="Tell us about your project, challenges, or questions..."
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full py-4 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                      isSubmitting
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'btn-primary hover:transform hover:scale-105'
+                    }`}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                        Sending Message...
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </div>
+                    )}
+                  </button>
+                </form>
+              )}
+            </motion.div>
+
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                  Contact <span className="gradient-text">Information</span>
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  We're here to help! Reach out through any of these channels and we'll respond quickly.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="flex items-start space-x-4"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                        {info.title}
+                      </h3>
+                      {info.link ? (
+                        <a
+                          href={info.link}
+                          className="text-azellar-teal hover:text-azellar-navy transition-colors"
+                          target={info.link.startsWith('http') ? '_blank' : '_self'}
+                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        >
+                          {info.details}
+                        </a>
+                      ) : (
+                        <span className="text-gray-600 dark:text-gray-400">{info.details}</span>
                       )}
                     </div>
-                    <p className="text-gray-600 mb-1">{office.address}</p>
-                    <p className="text-gray-600 mb-2">{office.postal}</p>
-                    <p className="text-azellar-teal font-semibold">{office.phone}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                ))}
+              </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto"
-          >
-            <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Response Time Guarantee</h4>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">General Inquiries</span>
-                <span className="text-azellar-teal font-semibold">24 hours</span>
+              {/* Quick Links */}
+              <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  Quick Links
+                </h3>
+                <div className="space-y-3">
+                  <a
+                    href="/akademy/courses"
+                    className="block text-azellar-teal hover:text-azellar-navy transition-colors"
+                  >
+                    → Browse Training Courses
+                  </a>
+                  <a
+                    href="/support"
+                    className="block text-azellar-teal hover:text-azellar-navy transition-colors"
+                  >
+                    → View Support Plans
+                  </a>
+                  <a
+                    href="/services"
+                    className="block text-azellar-teal hover:text-azellar-navy transition-colors"
+                  >
+                    → Our Services
+                  </a>
+                  <a
+                    href="/faq"
+                    className="block text-azellar-teal hover:text-azellar-navy transition-colors"
+                  >
+                    → Frequently Asked Questions
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">Sales Questions</span>
-                <span className="text-azellar-teal font-semibold">4 hours</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">Support Tickets</span>
-                <span className="text-azellar-teal font-semibold">2 hours</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">Emergency Support</span>
-                <span className="text-azellar-teal font-semibold">15 minutes</span>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-azellar-navy to-azellar-blue">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -300,24 +398,24 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Ready to Start Your Project?
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+              Ready to Get Started?
             </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Let's discuss how we can help you build a robust, scalable database infrastructure.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Join hundreds of companies that trust Azellar for their database consulting needs.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
               <a
-                href="tel:+15551234567"
-                className="btn-secondary text-lg px-8 py-4 shadow-glow"
+                href="/services"
+                className="btn-primary text-lg px-8 py-4"
               >
-                Call Now
+                Explore Our Services
               </a>
               <a
-                href="mailto:hello@azellar.com"
-                className="btn-outline text-white border-white hover:bg-white hover:text-azellar-navy text-lg px-8 py-4"
+                href="/akademy/courses"
+                className="btn-outline text-lg px-8 py-4"
               >
-                Send Email
+                Browse Training Courses
               </a>
             </div>
           </motion.div>
