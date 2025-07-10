@@ -18,7 +18,7 @@ import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LiveChat from "./components/LiveChat";
