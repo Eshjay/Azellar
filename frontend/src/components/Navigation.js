@@ -184,20 +184,12 @@ const Navigation = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/auth/login"
-                  className="font-medium text-gray-700 dark:text-gray-300 hover:text-azellar-teal transition-colors duration-200"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/auth/signup"
-                  className="btn-primary text-sm px-4 py-2"
-                >
-                  Sign Up
-                </Link>
-              </div>
+              <Link
+                to="/auth/login"
+                className="text-gray-700 dark:text-gray-300 hover:text-azellar-teal dark:hover:text-azellar-teal transition-colors px-3 py-2"
+              >
+                Sign In
+              </Link>
             )}
           </div>
 
