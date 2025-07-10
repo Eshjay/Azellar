@@ -107,12 +107,15 @@ export const AuthProvider = ({ children }) => {
 
       if (!error && data.user) {
         // Create profile with student role by default
-        await db.updateProfile(data.user.id, {
-          user_id: data.user.id,
-          email: email,
-          full_name: metadata.full_name || '',
-          role: 'student'
-        });
+        await supabase
+          .from('profiles')
+          .insert([{
+            user_id: data.user.id,
+            email: email,
+            full_name: metadata.full_name || '',
+            role: 'student',
+            is_active: true
+          }]);
       }
 
       return { data, error };
