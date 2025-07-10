@@ -6,7 +6,7 @@ import { Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { signIn, isAuthenticated, loading } = useAuth();
+  const { signIn, isAuthenticated, userProfile, loading } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
