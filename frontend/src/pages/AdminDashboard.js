@@ -191,7 +191,7 @@ const AdminDashboard = () => {
 
   const handleConvertInquiry = async (inquiry) => {
     // Logic to convert public inquiry to company/client
-    toast.info('Convert inquiry feature coming soon');
+    toast.success('Convert inquiry feature coming soon');
   };
 
   const tabs = [
