@@ -1,93 +1,190 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase, auth } from '../lib/supabase';
+import { supabase, db } from '../lib/supabase';
 
-const AuthContext = createContext({});
+const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [session, setSession] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     // Get initial session
-    const getInitialSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    };
-
     getInitialSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+        await loadUserProfile(session.user.id);
+        setIsAuthenticated(true);
+      } else {
+        setUser(null);
+        setUserProfile(null);
+        setIsAuthenticated(false);
       }
-    );
+      setLoading(false);
+    });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email, password, options = {}) => {
-    setLoading(true);
+  const getInitialSession = async () => {
     try {
-      const result = await auth.signUp(email, password, {
-        data: options.data || {}
-      });
-      return result;
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setUser(session.user);
+        await loadUserProfile(session.user.id);
+        setIsAuthenticated(true);
+      }
     } catch (error) {
-      console.error('Sign up error:', error);
-      throw error;
+      console.error('Error getting initial session:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadUserProfile = async (userId) => {
+    try {
+      const { data, error } = await db.getProfile(userId);
+      if (error) {
+        // If profile doesn't exist, create one with default student role
+        if (error.code === 'PGRST116') {
+          const newProfile = {
+            user_id: userId,
+            email: user?.email || '',
+            full_name: user?.user_metadata?.full_name || '',
+            role: 'student'
+          };
+          
+          const { data: createdProfile, error: createError } = await db.updateProfile(userId, newProfile);
+          if (!createError) {
+            setUserProfile(createdProfile);
+          }
+        }
+      } else {
+        setUserProfile(data);
+      }
+    } catch (error) {
+      console.error('Error loading user profile:', error);
+    }
+  };
+
+  const signUp = async (email, password, metadata = {}) => {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: metadata.full_name || '',
+            ...metadata
+          }
+        }
+      });
+
+      if (!error && data.user) {
+        // Create profile with student role by default
+        await db.updateProfile(data.user.id, {
+          user_id: data.user.id,
+          email: email,
+          full_name: metadata.full_name || '',
+          role: 'student'
+        });
+      }
+
+      return { data, error };
+    } catch (error) {
+      return { data: null, error };
     }
   };
 
   const signIn = async (email, password) => {
-    setLoading(true);
     try {
-      const result = await auth.signIn(email, password);
-      return result;
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      return { data, error };
     } catch (error) {
-      console.error('Sign in error:', error);
-      throw error;
-    } finally {
-      setLoading(false);
+      return { data: null, error };
     }
   };
 
   const signOut = async () => {
-    setLoading(true);
     try {
-      const result = await auth.signOut();
-      return result;
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        setUser(null);
+        setUserProfile(null);
+        setIsAuthenticated(false);
+      }
+      return { error };
     } catch (error) {
-      console.error('Sign out error:', error);
-      throw error;
-    } finally {
-      setLoading(false);
+      return { error };
     }
   };
 
+  const updateProfile = async (updates) => {
+    try {
+      if (!user) return { data: null, error: new Error('No user logged in') };
+      
+      const { data, error } = await db.updateProfile(user.id, updates);
+      if (!error) {
+        setUserProfile(data);
+      }
+      return { data, error };
+    } catch (error) {
+      return { data: null, error };
+    }
+  };
+
+  // Role-based helper functions
+  const hasRole = (role) => {
+    return userProfile?.role === role;
+  };
+
+  const hasAnyRole = (roles) => {
+    return roles.includes(userProfile?.role);
+  };
+
+  const isAdmin = () => hasRole('admin');
+  const isClient = () => hasRole('client');
+  const isStudent = () => hasRole('student');
+
+  const canAccessAdmin = () => isAdmin();
+  const canAccessSupport = () => hasAnyRole(['admin', 'client']);
+  const canAccessAcademy = () => hasAnyRole(['admin', 'student']);
+
   const value = {
     user,
-    session,
+    userProfile,
     loading,
+    isAuthenticated,
     signUp,
     signIn,
     signOut,
-    isAuthenticated: !!user
+    updateProfile,
+    // Role-based helpers
+    hasRole,
+    hasAnyRole,
+    isAdmin,
+    isClient,
+    isStudent,
+    canAccessAdmin,
+    canAccessSupport,
+    canAccessAcademy,
+    // Reload profile function
+    reloadProfile: () => loadUserProfile(user?.id)
   };
 
   return (
