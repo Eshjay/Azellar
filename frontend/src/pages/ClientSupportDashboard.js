@@ -60,6 +60,9 @@ const ClientSupportDashboard = () => {
     setIsSubmitting(true);
 
     try {
+      // Use a valid email for the backend
+      const supportEmail = user?.email || 'delivered@resend.dev';
+      
       // Use the contact form API for support requests
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
         method: 'POST',
@@ -67,15 +70,17 @@ const ClientSupportDashboard = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: userProfile?.full_name || user?.email,
-          email: user?.email,
-          message: `CLIENT SUPPORT REQUEST\n\nCompany: ${company?.name || 'Unknown'}\nClient: ${userProfile?.full_name}\nCategory: ${supportForm.category}\nPriority: ${supportForm.priority}\nSubject: ${supportForm.subject}\n\nMessage:\n${supportForm.message}`,
+          name: userProfile?.full_name || 'Client User',
+          email: supportEmail,
+          message: `CLIENT SUPPORT REQUEST\n\nCompany: ${company?.name || 'Unknown'}\nClient: ${userProfile?.full_name || supportEmail}\nCategory: ${supportForm.category}\nPriority: ${supportForm.priority}\nSubject: ${supportForm.subject}\n\nMessage:\n${supportForm.message}`,
           inquiry_type: 'client_support'
         }),
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        throw new Error(`Server error: ${response.status}`);
       }
 
       const data = await response.json();
@@ -94,7 +99,13 @@ const ClientSupportDashboard = () => {
       }
     } catch (error) {
       console.error('Support request error:', error);
-      toast.error('Failed to submit support request. Please try again.');
+      if (error.message.includes('Server error: 500')) {
+        toast.error('Email validation failed. Please ensure your account email is valid.');
+      } else if (error.message.includes('Network')) {
+        toast.error('Network error. Please check your connection and try again.');
+      } else {
+        toast.error('Failed to submit support request. Please try contacting support directly.');
+      }
     } finally {
       setIsSubmitting(false);
     }
