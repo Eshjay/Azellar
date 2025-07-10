@@ -9,7 +9,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const location = useLocation();
-  const { user, isAuthenticated, signOut } = useAuth();
+  const { isAuthenticated, user, userProfile, signOut } = useAuth();
 
   const navItems = [
     { name: 'Home', path: '/' },
