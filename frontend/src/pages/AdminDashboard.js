@@ -58,22 +58,25 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
       
-      // Load companies
-      const { data: companiesData } = await db.getCompanies();
+      // Load companies using direct Supabase queries
+      const { data: companiesData } = await supabase
+        .from('companies')
+        .select('*')
+        .eq('is_active', true)
+        .order('name');
       setCompanies(companiesData || []);
 
-      // Load tickets
-      const { data: ticketsData } = await db.getTickets();
-      setTickets(ticketsData || []);
-
       // Load public inquiries
-      const { data: inquiriesData } = await db.getPublicInquiries();
+      const { data: inquiriesData } = await supabase
+        .from('public_support_inquiries')
+        .select('*')
+        .order('created_at', { ascending: false });
       setPublicInquiries(inquiriesData || []);
 
-      // Calculate stats
+      // Calculate stats (no tickets table, so set to 0)
       const totalCompanies = companiesData?.length || 0;
-      const totalTickets = ticketsData?.length || 0;
-      const openTickets = ticketsData?.filter(t => ['open', 'in_progress'].includes(t.status)).length || 0;
+      const totalTickets = 0; // No tickets table in simplified version
+      const openTickets = 0;
       const pendingInquiries = inquiriesData?.filter(i => i.status === 'pending').length || 0;
 
       setStats({
