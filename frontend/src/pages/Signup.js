@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { Navigate, Link } from 'react-router-dom';
 import { Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 import toast from 'react-hot-toast';
 
 const Signup = () => {
