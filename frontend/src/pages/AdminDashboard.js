@@ -135,18 +135,54 @@ const AdminDashboard = () => {
   const handleCreateClient = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await db.createClientAccount(clientForm, selectedCompany.id);
+      // Create auth user first
+      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        email: clientForm.email,
+        password: clientForm.password || 'TempPassword123!',
+        user_metadata: {
+          full_name: clientForm.full_name
+        },
+        email_confirm: true
+      });
 
-      if (error) {
-        toast.error('Failed to create client account');
-        console.error('Client creation error:', error);
-      } else {
-        toast.success('Client account created successfully!');
-        setCreateClientModal(false);
-        setClientForm({ full_name: '', email: '', password: '' });
-        setSelectedCompany(null);
-        loadDashboardData();
+      if (authError) {
+        toast.error('Failed to create client auth: ' + authError.message);
+        return;
       }
+
+      // Create client profile
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .insert([{
+          user_id: authData.user.id,
+          email: clientForm.email,
+          full_name: clientForm.full_name,
+          role: 'client',
+          company_id: selectedCompany.id,
+          is_active: true
+        }])
+        .select()
+        .single();
+
+      if (profileError) {
+        toast.error('Failed to create client profile: ' + profileError.message);
+        return;
+      }
+
+      // Update company support user count
+      await supabase
+        .from('companies')
+        .update({ 
+          current_support_users: (selectedCompany.current_support_users || 0) + 1 
+        })
+        .eq('id', selectedCompany.id);
+
+      toast.success('Client account created successfully!');
+      setCreateClientModal(false);
+      setClientForm({ full_name: '', email: '', password: '' });
+      setSelectedCompany(null);
+      loadDashboardData();
+
     } catch (error) {
       console.error('Client creation error:', error);
       toast.error('Failed to create client account');
