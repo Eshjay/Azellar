@@ -55,21 +55,34 @@ export const AuthProvider = ({ children }) => {
 
   const loadUserProfile = async (userId) => {
     try {
-      const { data, error } = await db.getProfile(userId);
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
+      
       if (error) {
         // If profile doesn't exist, create one with default student role
         if (error.code === 'PGRST116') {
-          const newProfile = {
-            user_id: userId,
-            email: user?.email || '',
-            full_name: user?.user_metadata?.full_name || '',
-            role: 'student'
-          };
+          const { data: insertedProfile, error: insertError } = await supabase
+            .from('profiles')
+            .insert([{
+              user_id: userId,
+              email: user?.email || '',
+              full_name: user?.user_metadata?.full_name || '',
+              role: 'student',
+              is_active: true
+            }])
+            .select()
+            .single();
           
-          const { data: createdProfile, error: createError } = await db.updateProfile(userId, newProfile);
-          if (!createError) {
-            setUserProfile(createdProfile);
+          if (!insertError) {
+            setUserProfile(insertedProfile);
+          } else {
+            console.error('Error creating profile:', insertError);
           }
+        } else {
+          console.error('Error loading profile:', error);
         }
       } else {
         setUserProfile(data);
