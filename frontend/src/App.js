@@ -61,6 +61,7 @@ function App() {
               <Route path="/auth/signup" element={<Signup />} />
               
               {/* Public Support */}
+              <Route path="/support/plans" element={<Support />} />
               <Route path="/support/inquiry" element={<PublicSupportInquiry />} />
               
               {/* Role-protected routes */}
