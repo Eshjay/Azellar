@@ -30,12 +30,33 @@ const PublicSupportInquiry = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await db.createPublicInquiry(formData);
+      // Validate email domain before submission
+      const emailDomain = formData.email.split('@')[1];
+      const testDomains = ['example.com', 'test.com', 'sample.com'];
       
-      if (error) {
-        toast.error('Failed to submit inquiry. Please try again.');
-        console.error('Inquiry submission error:', error);
-      } else {
+      if (testDomains.includes(emailDomain)) {
+        toast.error('Please use a valid email address. Test domains like example.com are not allowed.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Use the contact form API instead of createPublicInquiry since the table doesn't exist
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: `Company: ${formData.company_name || 'Not specified'}\nPhone: ${formData.phone || 'Not provided'}\nSubject: ${formData.subject}\nPriority: ${formData.priority}\n\nMessage:\n${formData.message}`,
+          inquiry_type: 'support_inquiry'
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok && data.status === 'success') {
         setIsSubmitted(true);
         toast.success('Your inquiry has been submitted successfully!');
         
@@ -49,10 +70,16 @@ const PublicSupportInquiry = () => {
           message: '',
           priority: 'medium'
         });
+      } else {
+        if (response.status === 500) {
+          toast.error('Invalid email domain. Please use a valid business email address.');
+        } else {
+          toast.error(data.message || 'Failed to submit inquiry. Please try again.');
+        }
       }
     } catch (error) {
       console.error('Inquiry submission error:', error);
-      toast.error('Failed to submit inquiry. Please try again.');
+      toast.error('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
