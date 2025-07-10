@@ -14,7 +14,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { db } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 import toast from 'react-hot-toast';
 
 const AdminDashboard = () => {
