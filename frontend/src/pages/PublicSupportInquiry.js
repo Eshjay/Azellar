@@ -40,7 +40,7 @@ const PublicSupportInquiry = () => {
         return;
       }
 
-      // Use the contact form API instead of createPublicInquiry since the table doesn't exist
+      // Use the contact form API for support inquiries
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
         method: 'POST',
         headers: {
@@ -49,14 +49,18 @@ const PublicSupportInquiry = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          message: `Company: ${formData.company_name || 'Not specified'}\nPhone: ${formData.phone || 'Not provided'}\nSubject: ${formData.subject}\nPriority: ${formData.priority}\n\nMessage:\n${formData.message}`,
+          message: `SUPPORT INQUIRY\n\nCompany: ${formData.company_name || 'Not specified'}\nPhone: ${formData.phone || 'Not provided'}\nSubject: ${formData.subject}\nPriority: ${formData.priority}\n\nMessage:\n${formData.message}`,
           inquiry_type: 'support_inquiry'
         }),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
       
-      if (response.ok && data.status === 'success') {
+      if (data.status === 'success') {
         setIsSubmitted(true);
         toast.success('Your inquiry has been submitted successfully!');
         
@@ -71,11 +75,7 @@ const PublicSupportInquiry = () => {
           priority: 'medium'
         });
       } else {
-        if (response.status === 500) {
-          toast.error('Invalid email domain. Please use a valid business email address.');
-        } else {
-          toast.error(data.message || 'Failed to submit inquiry. Please try again.');
-        }
+        throw new Error(data.message || 'Failed to submit inquiry');
       }
     } catch (error) {
       console.error('Inquiry submission error:', error);
