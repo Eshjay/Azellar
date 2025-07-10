@@ -8,6 +8,7 @@ import Academy from "./pages/Academy";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import PublicSupportInquiry from "./pages/PublicSupportInquiry";
