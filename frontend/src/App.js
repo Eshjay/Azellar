@@ -72,7 +72,6 @@ function App() {
                   </RoleProtectedRoute>
                 } 
               />
-              <Route path="/support/inquiry" element={<PublicSupportInquiry />} />
               <Route 
                 path="/support" 
                 element={
