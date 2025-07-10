@@ -10,7 +10,7 @@ import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
-import SupportPortal from "./pages/SupportPortal";
+import PublicSupportInquiry from "./pages/PublicSupportInquiry";
 import ClientPortal from "./pages/ClientPortal";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
