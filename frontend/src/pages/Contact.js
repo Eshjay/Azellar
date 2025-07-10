@@ -26,58 +26,55 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Submit to Supabase
-      const { data, error } = await db.submitContactForm({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        inquiry_type: formData.inquiry_type,
-        status: 'pending'
-      });
-
-      if (error) {
-        toast.error('Failed to submit your message. Please try again.');
-        console.error('Contact form error:', error);
+      // Validate email domain before submission
+      const emailDomain = formData.email.split('@')[1];
+      const testDomains = ['example.com', 'test.com', 'sample.com'];
+      
+      if (testDomains.includes(emailDomain)) {
+        toast.error('Please use a valid email address. Test domains like example.com are not allowed.');
+        setIsSubmitting(false);
         return;
       }
 
-      // Send email notification
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-            inquiry_type: formData.inquiry_type
-          }),
-        });
-
-        if (!response.ok) {
-          console.error('Failed to send email notification');
-        }
-      } catch (emailError) {
-        console.error('Email sending error:', emailError);
-      }
-
-      // Show success
-      setSubmitted(true);
-      toast.success('Thank you for your message! We\'ll get back to you soon.');
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: '',
-        inquiry_type: 'general'
+      // Send email directly through backend API
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          inquiry_type: formData.inquiry_type
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok && data.status === 'success') {
+        // Show success
+        setSubmitted(true);
+        toast.success('Thank you for your message! We\'ll get back to you soon.');
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+          inquiry_type: 'general'
+        });
+      } else {
+        if (response.status === 500) {
+          toast.error('Invalid email domain. Please use a valid business email address.');
+        } else {
+          toast.error(data.message || 'Failed to submit your message. Please try again.');
+        }
+      }
       
     } catch (error) {
       console.error('Contact submission error:', error);
-      toast.error('Failed to submit your message. Please try again.');
+      toast.error('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
