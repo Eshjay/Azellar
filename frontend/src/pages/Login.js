@@ -13,9 +13,15 @@ const Login = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Redirect if already authenticated
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
+  // Redirect if already authenticated based on role
+  if (isAuthenticated && userProfile) {
+    if (userProfile.role === 'admin') {
+      return <Navigate to="/admin" replace />;
+    } else if (userProfile.role === 'client') {
+      return <Navigate to="/support" replace />;
+    } else {
+      return <Navigate to="/dashboard" replace />;
+    }
   }
 
   const handleSubmit = async (e) => {
