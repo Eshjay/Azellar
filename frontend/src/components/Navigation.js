@@ -68,7 +68,7 @@ const Navigation = () => {
                       )}
                     </Link>
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                       {academyItems.map((subItem) => (
                         <Link
                           key={subItem.name}
@@ -78,6 +78,34 @@ const Navigation = () => {
                           {subItem.name}
                         </Link>
                       ))}
+                      <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                      {isAuthenticated ? (
+                        <>
+                          {user?.role === 'student' && (
+                            <Link
+                              to="/dashboard"
+                              className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
+                            >
+                              Student Dashboard
+                            </Link>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <Link
+                            to="/auth/login"
+                            className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
+                          >
+                            Student Login
+                          </Link>
+                          <Link
+                            to="/auth/signup"
+                            className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
+                          >
+                            Student Sign Up
+                          </Link>
+                        </>
+                      )}
                     </div>
                   </div>
                 );
