@@ -23,41 +23,69 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Basic validation
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match!');
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      toast.error('Password must be at least 6 characters long!');
-      return;
-    }
-
     setIsSubmitting(true);
+
+    // Validate form
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      toast.error('Password must be at least 8 characters long');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Check if user already exists first
+      const { data: existingUser } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: 'dummy_password'
+      });
+      
+      // If we get here without error, user might already exist
+      if (existingUser) {
+        toast.error('This email is already registered. Please try signing in instead.');
+        setIsSubmitting(false);
+        return;
+      }
+    } catch (error) {
+      // Expected error if user doesn't exist, continue with signup
+    }
 
     try {
       const { data, error } = await signUp(formData.email, formData.password, {
-        data: {
-          full_name: formData.fullName,
-          email: formData.email
-        }
+        full_name: formData.fullName,
+        email: formData.email
       });
 
       if (error) {
-        if (error.message.includes('already been registered')) {
+        if (error.message.includes('already been registered') || error.message.includes('already registered')) {
           toast.error('This email is already registered. Please try signing in instead.');
+        } else if (error.message.includes('Invalid email')) {
+          toast.error('Please enter a valid email address.');
         } else {
           toast.error(error.message || 'Sign up failed. Please try again.');
         }
-      } else {
-        setShowSuccess(true);
-        toast.success('Account created! Please check your email to confirm your account.');
+      } else if (data.user) {
+        // Check if email confirmation is required
+        if (!data.user.email_confirmed_at) {
+          setShowSuccess(true);
+          toast.success('Account created! Please check your email to confirm your account before signing in.');
+        } else {
+          // Auto-login if email is already confirmed
+          toast.success('Account created successfully! You are now logged in.');
+        }
       }
     } catch (error) {
       console.error('Signup error:', error);
-      toast.error('An unexpected error occurred. Please try again.');
+      if (error.message.includes('already registered')) {
+        toast.error('This email is already registered. Please try signing in instead.');
+      } else {
+        toast.error('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }
