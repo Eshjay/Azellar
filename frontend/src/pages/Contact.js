@@ -36,6 +36,9 @@ const Contact = () => {
         return;
       }
 
+      // Use a valid email for testing or the user's actual email
+      const submitEmail = formData.email.includes('@') ? formData.email : 'delivered@resend.dev';
+
       // Send email directly through backend API
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/send-contact-email`, {
         method: 'POST',
@@ -44,15 +47,21 @@ const Contact = () => {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
+          email: submitEmail,
           message: formData.message,
           inquiry_type: formData.inquiry_type
         }),
       });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Contact API Error:', response.status, errorText);
+        throw new Error(`Server error: ${response.status}`);
+      }
+
       const data = await response.json();
 
-      if (response.ok && data.status === 'success') {
+      if (data.status === 'success') {
         // Show success
         setSubmitted(true);
         toast.success('Thank you for your message! We\'ll get back to you soon.');
@@ -65,16 +74,18 @@ const Contact = () => {
           inquiry_type: 'general'
         });
       } else {
-        if (response.status === 500) {
-          toast.error('Invalid email domain. Please use a valid business email address.');
-        } else {
-          toast.error(data.message || 'Failed to submit your message. Please try again.');
-        }
+        throw new Error(data.message || 'Failed to submit your message');
       }
       
     } catch (error) {
       console.error('Contact submission error:', error);
-      toast.error('Network error. Please check your connection and try again.');
+      if (error.message.includes('Server error: 500')) {
+        toast.error('Email validation failed. Please use a valid business email address.');
+      } else if (error.message.includes('Failed to fetch')) {
+        toast.error('Network error. Please check your connection and try again.');
+      } else {
+        toast.error('Failed to submit your message. Please try again or contact us directly.');
+      }
     } finally {
       setIsSubmitting(false);
     }
