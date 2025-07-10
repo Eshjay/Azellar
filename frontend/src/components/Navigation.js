@@ -138,50 +138,47 @@ const Navigation = () => {
             <ThemeToggle />
             
             {isAuthenticated ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-azellar-teal transition-colors duration-200"
-                >
-                  <div className="w-8 h-8 bg-gradient-to-r from-azellar-navy to-azellar-teal rounded-full flex items-center justify-center">
-                    <User className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-medium">
-                    {user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Account'}
-                  </span>
-                  <ChevronDown className="w-4 h-4" />
+              <div className="relative group">
+                <button className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-azellar-teal transition-colors">
+                  <User className="h-5 w-5" />
+                  <span className="hidden md:block">{userProfile?.full_name || user?.email}</span>
+                  <ChevronDown className="h-4 w-4" />
                 </button>
-
-                {showUserMenu && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg"
-                  >
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      to="/client-portal"
-                      className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      Client Portal
-                    </Link>
-                    <hr className="border-gray-200 dark:border-gray-700" />
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    {userProfile?.role === 'admin' && (
+                      <Link
+                        to="/admin"
+                        className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors"
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
+                    {userProfile?.role === 'client' && (
+                      <Link
+                        to="/support"
+                        className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors"
+                      >
+                        Support Portal
+                      </Link>
+                    )}
+                    {userProfile?.role === 'student' && (
+                      <Link
+                        to="/dashboard"
+                        className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors"
+                      >
+                        Student Dashboard
+                      </Link>
+                    )}
+                    <div className="border-t border-gray-200 dark:border-gray-600 my-2"></div>
                     <button
-                      onClick={handleSignOut}
-                      className="block w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-red-600 transition-colors duration-200"
+                      onClick={signOut}
+                      className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-red-600 transition-colors"
                     >
-                      <LogOut className="w-4 h-4 inline mr-2" />
                       Sign Out
                     </button>
-                  </motion.div>
-                )}
+                  </div>
+                </div>
               </div>
             ) : (
               <Link
