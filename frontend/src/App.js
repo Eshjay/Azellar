@@ -55,25 +55,47 @@ function App() {
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/blog/post/:slug" element={<BlogPost />} />
               
-              {/* Academy Routes */}
-              <Route path="/akademy/courses" element={<Courses />} />
-              <Route path="/akademy/course/:id" element={<CourseDetail />} />
-              
-              {/* Authentication Routes */}
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/signup" element={<Signup />} />
-              
-              {/* Protected Routes */}
-              <Route path="/dashboard" element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/client-portal" element={
-                <ProtectedRoute>
-                  <ClientPortal />
-                </ProtectedRoute>
-              } />
+              {/* Role-protected routes */}
+              <Route 
+                path="/admin" 
+                element={
+                  <RoleProtectedRoute allowedRoles={['admin']}>
+                    <AdminDashboard />
+                  </RoleProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/support" 
+                element={
+                  <RoleProtectedRoute allowedRoles={['admin', 'client']}>
+                    <SupportPortal />
+                  </RoleProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/dashboard" 
+                element={
+                  <RoleProtectedRoute allowedRoles={['admin', 'student']}>
+                    <Dashboard />
+                  </RoleProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/akademy/courses" 
+                element={
+                  <RoleProtectedRoute allowedRoles={['admin', 'student']}>
+                    <Courses />
+                  </RoleProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/akademy/course/:id" 
+                element={
+                  <RoleProtectedRoute allowedRoles={['admin', 'student']}>
+                    <CourseDetail />
+                  </RoleProtectedRoute>
+                } 
+              />
             </Routes>
             <Footer />
             <LiveChat />
