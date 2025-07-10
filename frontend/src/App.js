@@ -57,6 +57,13 @@ function App() {
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/blog/post/:slug" element={<BlogPost />} />
               
+              {/* Authentication Routes */}
+              <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/signup" element={<Signup />} />
+              
+              {/* Public Support */}
+              <Route path="/support/inquiry" element={<PublicSupportInquiry />} />
+              
               {/* Role-protected routes */}
               <Route 
                 path="/admin" 
