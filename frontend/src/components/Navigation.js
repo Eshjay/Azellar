@@ -82,7 +82,7 @@ const Navigation = () => {
                       <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
                       {isAuthenticated ? (
                         <>
-                          {user?.role === 'student' && (
+                          {userProfile?.role === 'student' && (
                             <Link
                               to="/dashboard"
                               className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-azellar-teal transition-colors duration-200"
