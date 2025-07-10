@@ -97,13 +97,22 @@ const AdminDashboard = () => {
   const handleCreateCompany = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await db.createCompany({
-        ...companyForm,
-        created_by: userProfile.user_id
-      });
+      const { data, error } = await supabase
+        .from('companies')
+        .insert([{
+          name: companyForm.name,
+          email: companyForm.email,
+          phone: companyForm.phone,
+          address: companyForm.address,
+          max_support_users: companyForm.max_support_users,
+          current_support_users: 0,
+          is_active: true
+        }])
+        .select()
+        .single();
 
       if (error) {
-        toast.error('Failed to create company');
+        toast.error('Failed to create company: ' + error.message);
         console.error('Company creation error:', error);
       } else {
         toast.success('Company created successfully!');
