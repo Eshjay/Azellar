@@ -78,7 +78,7 @@ function App() {
                 path="/support" 
                 element={
                   <RoleProtectedRoute allowedRoles={['admin', 'client']}>
-                    <SupportPortal />
+                    <ClientSupportDashboard />
                   </RoleProtectedRoute>
                 } 
               />
